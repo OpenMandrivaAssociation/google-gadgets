@@ -10,6 +10,7 @@ URL:		http://code.google.com/p/google-gadgets-for-linux/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	curl-devel
+BuildRequires:	libltdl-devel
 BuildRequires:	gtk2-devel
 BuildRequires:	qt4-devel
 BuildRequires:	mozilla-firefox-devel
