@@ -1,7 +1,7 @@
 Summary:	Google Gadgets for Linux
 Name:		google-gadgets
 Version:	0.9.2
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	Apache License
 Group:		Toys
 Source0:	http://google-gadgets-for-linux.googlecode.com/files/%name-for-linux-%version.tar.gz
@@ -186,7 +186,7 @@ mkdir -p %buildroot%_datadir/applications
 cat > %buildroot%_datadir/applications/google-gadgets.desktop <<EOF
 [Desktop Entry]
 Type=Application
-Exec=%_bindir/%name
+Exec=%_bindir/ggl
 Name=Google Gadgets
 Comment=Google Gadgets for Linux
 Icon=toys_section
