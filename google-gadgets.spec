@@ -182,7 +182,7 @@ rm -rf %{buildroot}
 %makeinstall_std
 
 mkdir -p %buildroot%_datadir/applications
-cat > %buildroot%_datadir/applications/google-gadgets.desktop <EOF
+cat > %buildroot%_datadir/applications/google-gadgets.desktop <<EOF
 [Desktop Entry]
 Type=Application
 Exec=%_bindir/%name
