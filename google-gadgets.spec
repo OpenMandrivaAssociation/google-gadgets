@@ -1,7 +1,7 @@
 Summary:	Google Gadgets for Linux
 Name:		google-gadgets
 Version:	0.9.2
-Release:	%mkrel 2
+Release:	%mkrel 3
 License:	Apache License
 Group:		Toys
 Source0:	http://google-gadgets-for-linux.googlecode.com/files/%name-for-linux-%version.tar.gz
@@ -12,7 +12,10 @@ BuildRequires:	automake
 BuildRequires:	curl-devel
 BuildRequires:	libltdl-devel
 BuildRequires:	gtk2-devel
-BuildRequires:	qt4-devel >= 4.4.0
+BuildRequires:	qt4-devel
+%if %mdkversion < 200900
+BuildRequires:	QtWebKit-devel
+%endif
 BuildRequires:	mozilla-firefox-devel
 BuildRequires:	librsvg-devel
 BuildRequires:	libgstreamer0.10-plugins-base-devel
