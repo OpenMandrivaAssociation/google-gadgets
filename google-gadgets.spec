@@ -12,7 +12,7 @@ BuildRequires:	automake
 BuildRequires:	curl-devel
 BuildRequires:	libltdl-devel
 BuildRequires:	gtk2-devel
-BuildRequires:	qt4-devel
+BuildRequires:	qt4-devel >= 4.4.0
 BuildRequires:	mozilla-firefox-devel
 BuildRequires:	librsvg-devel
 BuildRequires:	libgstreamer0.10-plugins-base-devel
