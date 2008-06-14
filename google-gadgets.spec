@@ -1,7 +1,7 @@
 Summary:	Google Gadgets for Linux
 Name:		google-gadgets
-Version:	0.9.2
-Release:	%mkrel 3
+Version:	0.9.3
+Release:	%mkrel 1
 License:	Apache License
 Group:		Toys
 Source0:	http://google-gadgets-for-linux.googlecode.com/files/%name-for-linux-%version.tar.gz
