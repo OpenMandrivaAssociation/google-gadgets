@@ -1,7 +1,7 @@
 Summary:	Google Gadgets for Linux
 Name:		google-gadgets
 Version:	0.9.3
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	Apache License
 Group:		Toys
 Source0:	http://google-gadgets-for-linux.googlecode.com/files/%name-for-linux-%version.tar.gz
@@ -19,6 +19,7 @@ BuildRequires:	QtWebKit-devel
 BuildRequires:	mozilla-firefox-devel
 BuildRequires:	librsvg-devel
 BuildRequires:	libgstreamer0.10-plugins-base-devel
+Conflicts:	%name-gtk < 0.9.3-2
 Requires:	%name-host = %version
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -38,6 +39,9 @@ Universal Gadgets on iGoogle.
 %_libdir/google-gadgets/modules/dbus-script-class.so
 %_libdir/google-gadgets/modules/default-framework.so
 %_libdir/google-gadgets/modules/default-options.so
+%_libdir/google-gadgets/modules/gst-audio-framework.so
+%_libdir/google-gadgets/modules/gst-mediaplayer-element.so
+%_libdir/google-gadgets/modules/smjs-script-runtime.so
 %_libdir/google-gadgets/modules/google-gadget-manager.so
 %_libdir/google-gadgets/modules/libxml2-xml-parser.so
 %_libdir/google-gadgets/modules/linux-system-framework.so
@@ -141,12 +145,9 @@ fi
 %defattr(-,root,root)
 %_bindir/ggl-gtk
 %_libdir/google-gadgets/gtkmoz-browser-child
-%_libdir/google-gadgets/modules/gst-audio-framework.so
-%_libdir/google-gadgets/modules/gst-mediaplayer-element.so
 %_libdir/google-gadgets/modules/gtk-edit-element.so
 %_libdir/google-gadgets/modules/gtk-system-framework.so
 %_libdir/google-gadgets/modules/gtkmoz-browser-element.so
-%_libdir/google-gadgets/modules/smjs-script-runtime.so
 
 #-----------------------------------------------------------------------
 %define develname %mklibname %name -d
