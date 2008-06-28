@@ -21,6 +21,7 @@ BuildRequires:	librsvg-devel
 BuildRequires:	libgstreamer0.10-plugins-base-devel
 Conflicts:	%name-gtk < 0.9.3-2
 Requires:	%name-host = %version
+Requires:	curl
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
