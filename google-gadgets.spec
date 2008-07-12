@@ -19,7 +19,6 @@ BuildRequires:	QtWebKit-devel
 BuildRequires:	mozilla-firefox-devel
 BuildRequires:	librsvg-devel
 BuildRequires:	libgstreamer0.10-plugins-base-devel
-Conflicts:	%name-gtk < 0.9.3-2
 Requires:	%name-host = %version
 Requires:	curl
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
@@ -33,7 +32,8 @@ Universal Gadgets on iGoogle.
 %files -f %name.lang
 %defattr(-,root,root)
 %doc NEWS THANKS README ChangeLog
-%_datadir/applications/google-gadgets.desktop
+%_datadir/pixmaps/google-gadgets.png
+%_datadir/mime/packages/00-google-gadgets.xml
 %_datadir/google-gadgets
 %dir %_libdir/google-gadgets/modules
 %_libdir/google-gadgets/modules/curl-xml-http-request.so
@@ -46,6 +46,14 @@ Universal Gadgets on iGoogle.
 %_libdir/google-gadgets/modules/google-gadget-manager.so
 %_libdir/google-gadgets/modules/libxml2-xml-parser.so
 %_libdir/google-gadgets/modules/linux-system-framework.so
+
+%if mdkversion < 200900
+%post
+%update_mime_database
+
+%postun
+%clean_mime_database
+%endif
 
 #-----------------------------------------------------------------------
 %define libname %mklibname ggadget 1.0 0
@@ -61,6 +69,7 @@ This package contains shared library of Google Gadgets.
 %defattr(-,root,root)
 %_libdir/libggadget-1.0.so.0*
 %_libdir/libggadget-dbus-1.0.so.0*
+%_libdir/libggadget-js-1.0.so.0*
 
 #-----------------------------------------------------------------------
 %define libqt %mklibname ggadget-qt 1.0 0
@@ -92,19 +101,29 @@ This package contains qt4 host of Google Gadgets.
 
 %post qt
 update-alternatives --install %{_bindir}/ggl google-gadgets %{_bindir}/ggl-qt 10
+%if mdkversion < 200900
+%update_menus
+%update_desktop_database
+%endif
 
 %postun qt
 if ! [ -e %{_bindir}/ggl-qt ]; then
   update-alternatives --remove google-gadgets %{_bindir}/ggl-qt
 fi
+%if mdkversion < 200900
+%clean_menus
+%clean_desktop_database
+%endif
 
 %files qt
 %defattr(-,root,root)
 %_bindir/ggl-qt
+%_datadir/applications/ggl-qt.desktop
 %_libdir/google-gadgets/modules/qt-edit-element.so
 %_libdir/google-gadgets/modules/qt-system-framework.so
 %_libdir/google-gadgets/modules/qt-xml-http-request.so
 %_libdir/google-gadgets/modules/qtwebkit-browser-element.so
+%_libdir/google-gadgets/modules/qt-script-runtime.so
 
 #-----------------------------------------------------------------------
 %define libgtk %mklibname ggadget-gtk 1.0 0
@@ -125,6 +144,7 @@ This package contains gtk2 library of Google Gadgets.
 Summary:	Google Gadgets for Linux - gtk2 host
 Group:		Toys
 Provides:	google-gadgets-host = %version
+Conflicts:      %name < 0.10.0
 
 %description gtk
 Google Gadgets for Linux provides a platform for running desktop gadgets
@@ -136,19 +156,29 @@ This package contains gtk2 host of Google Gadgets.
 
 %post gtk
 update-alternatives --install %{_bindir}/ggl google-gadgets %{_bindir}/ggl-gtk 10
+%if mdkversion < 200900
+%update_menus
+%update_desktop_database
+%endif
 
 %postun gtk
 if ! [ -e %{_bindir}/ggl-gtk ]; then
   update-alternatives --remove google-gadgets %{_bindir}/ggl-gtk
 fi
+%if mdkversion < 200900
+%clean_menus
+%clean_desktop_database
+%endif
 
 %files gtk
 %defattr(-,root,root)
 %_bindir/ggl-gtk
+%_datadir/applications/ggl-gtk.desktop
 %_libdir/google-gadgets/gtkmoz-browser-child
 %_libdir/google-gadgets/modules/gtk-edit-element.so
 %_libdir/google-gadgets/modules/gtk-system-framework.so
 %_libdir/google-gadgets/modules/gtkmoz-browser-element.so
+%_libdir/google-gadgets/modules/smjs-script-runtime.so
 
 #-----------------------------------------------------------------------
 %define develname %mklibname %name -d
@@ -180,23 +210,12 @@ This package contains developement files of Google Gadgets.
 
 %build
 sh autotools/bootstrap.sh
-%configure2_5x --disable-static --disable-werror
+%configure2_5x --disable-static --disable-werror --disable-update-mime-database --disable-update-desktop-database
 %make
 
 %install
 rm -rf %{buildroot}
 %makeinstall_std
-
-mkdir -p %buildroot%_datadir/applications
-cat > %buildroot%_datadir/applications/google-gadgets.desktop <<EOF
-[Desktop Entry]
-Type=Application
-Exec=%_bindir/ggl
-Name=Google Gadgets
-Comment=Google Gadgets for Linux
-Icon=toys_section
-Categories=Utility;
-EOF
 
 %find_lang %name
 
