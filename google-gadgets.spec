@@ -47,7 +47,7 @@ Universal Gadgets on iGoogle.
 %_libdir/google-gadgets/modules/libxml2-xml-parser.so
 %_libdir/google-gadgets/modules/linux-system-framework.so
 
-%if mdkversion < 200900
+%if %mdkversion < 200900
 %post
 %update_mime_database
 
@@ -101,7 +101,7 @@ This package contains qt4 host of Google Gadgets.
 
 %post qt
 update-alternatives --install %{_bindir}/ggl google-gadgets %{_bindir}/ggl-qt 10
-%if mdkversion < 200900
+%if %mdkversion < 200900
 %update_menus
 %update_desktop_database
 %endif
@@ -110,7 +110,7 @@ update-alternatives --install %{_bindir}/ggl google-gadgets %{_bindir}/ggl-qt 10
 if ! [ -e %{_bindir}/ggl-qt ]; then
   update-alternatives --remove google-gadgets %{_bindir}/ggl-qt
 fi
-%if mdkversion < 200900
+%if %mdkversion < 200900
 %clean_menus
 %clean_desktop_database
 %endif
@@ -156,7 +156,7 @@ This package contains gtk2 host of Google Gadgets.
 
 %post gtk
 update-alternatives --install %{_bindir}/ggl google-gadgets %{_bindir}/ggl-gtk 10
-%if mdkversion < 200900
+%if %mdkversion < 200900
 %update_menus
 %update_desktop_database
 %endif
@@ -165,7 +165,7 @@ update-alternatives --install %{_bindir}/ggl google-gadgets %{_bindir}/ggl-gtk 1
 if ! [ -e %{_bindir}/ggl-gtk ]; then
   update-alternatives --remove google-gadgets %{_bindir}/ggl-gtk
 fi
-%if mdkversion < 200900
+%if %mdkversion < 200900
 %clean_menus
 %clean_desktop_database
 %endif
