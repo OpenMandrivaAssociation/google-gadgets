@@ -123,7 +123,7 @@ fi
 %_libdir/google-gadgets/modules/qt-system-framework.so
 %_libdir/google-gadgets/modules/qt-xml-http-request.so
 %_libdir/google-gadgets/modules/qtwebkit-browser-element.so
-%if %mdkversion > 200900
+%if %mdkversion >= 200900
 %_libdir/google-gadgets/modules/qt-script-runtime.so
 %endif
 
