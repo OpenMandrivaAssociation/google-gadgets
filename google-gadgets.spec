@@ -41,7 +41,7 @@ Universal Gadgets on iGoogle.
 %_libdir/google-gadgets/modules/default-framework.so
 %_libdir/google-gadgets/modules/default-options.so
 %_libdir/google-gadgets/modules/gst-audio-framework.so
-%_libdir/google-gadgets/modules/gst-mediaplayer-element.so
+%_libdir/google-gadgets/modules/gst-video-element.so
 %_libdir/google-gadgets/modules/smjs-script-runtime.so
 %_libdir/google-gadgets/modules/google-gadget-manager.so
 %_libdir/google-gadgets/modules/libxml2-xml-parser.so
