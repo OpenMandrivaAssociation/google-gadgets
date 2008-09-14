@@ -3,7 +3,7 @@
 Summary:	Google Gadgets for Linux
 Name:		google-gadgets
 Version:	0.10.2
-Release:	%mkrel 2
+Release:	%mkrel 3
 License:	Apache License
 Group:		Toys
 Source0:	http://google-gadgets-for-linux.googlecode.com/files/%name-for-linux-%version.tar.bz2
@@ -97,6 +97,7 @@ This package contains qt4 library of Google Gadgets.
 Summary:	Google Gadgets for Linux - qt4 host
 Group:		Toys
 Provides:	google-gadgets-host = %version
+Requires:	google-gadgets = %version
 
 %description qt
 Google Gadgets for Linux provides a platform for running desktop gadgets
@@ -154,6 +155,7 @@ Summary:	Google Gadgets for Linux - gtk2 host
 Group:		Toys
 Provides:	google-gadgets-host = %version
 Conflicts:      %name < 0.10.0
+Requires:	google-gadgets = %version
 
 %description gtk
 Google Gadgets for Linux provides a platform for running desktop gadgets
@@ -217,7 +219,6 @@ This package contains developement files of Google Gadgets.
 %setup -q -n %name-for-linux-%version
 
 %build
-sh autotools/bootstrap.sh
 %configure2_5x --disable-static --disable-werror --disable-update-mime-database --disable-update-desktop-database \
 %if %build_oem
 	--with-oem-brand="%{product_distribution} %{product_version} for %{product_arch}"
