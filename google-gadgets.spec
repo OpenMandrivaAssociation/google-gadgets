@@ -1,11 +1,10 @@
 Summary:	Google Gadgets for Linux
 Name:		google-gadgets
-Version:	0.10.1
+Version:	0.10.2
 Release:	%mkrel 1
 License:	Apache License
 Group:		Toys
-Source0:	http://google-gadgets-for-linux.googlecode.com/files/%name-for-linux-%version.tar.gz
-Patch0:		google-gadgets-0.9.2-add-missing-linking-libs.patch
+Source0:	http://google-gadgets-for-linux.googlecode.com/files/%name-for-linux-%version.tar.bz2
 URL:		http://code.google.com/p/google-gadgets-for-linux/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -13,6 +12,8 @@ BuildRequires:	curl-devel
 BuildRequires:	libltdl-devel
 BuildRequires:	gtk2-devel
 BuildRequires:	qt4-devel
+BuildRequires:	dbus-devel
+BuildRequires:	startup-notification-devel
 %if %mdkversion < 200900
 BuildRequires:	QtWebKit-devel
 BuildRequires:	mozilla-firefox-devel
@@ -36,6 +37,7 @@ Universal Gadgets on iGoogle.
 %doc NEWS THANKS README ChangeLog
 %_datadir/pixmaps/google-gadgets.png
 %_datadir/mime/packages/00-google-gadgets.xml
+%_iconsdir/*/*/*/*
 %_datadir/google-gadgets
 %dir %_libdir/google-gadgets/modules
 %_libdir/google-gadgets/modules/curl-xml-http-request.so
@@ -72,6 +74,7 @@ This package contains shared library of Google Gadgets.
 %_libdir/libggadget-1.0.so.0*
 %_libdir/libggadget-dbus-1.0.so.0*
 %_libdir/libggadget-js-1.0.so.0*
+%_libdir/libggadget-xdg-1.0.so.0*
 
 #-----------------------------------------------------------------------
 %define libqt %mklibname ggadget-qt 1.0 0
@@ -210,7 +213,6 @@ This package contains developement files of Google Gadgets.
 
 %prep
 %setup -q -n %name-for-linux-%version
-%patch0 -p0
 
 %build
 sh autotools/bootstrap.sh
