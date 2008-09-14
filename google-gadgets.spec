@@ -1,3 +1,5 @@
+%define build_oem 0
+
 Summary:	Google Gadgets for Linux
 Name:		google-gadgets
 Version:	0.10.2
@@ -216,7 +218,11 @@ This package contains developement files of Google Gadgets.
 
 %build
 sh autotools/bootstrap.sh
-%configure2_5x --disable-static --disable-werror --disable-update-mime-database --disable-update-desktop-database
+%configure2_5x --disable-static --disable-werror --disable-update-mime-database --disable-update-desktop-database \
+%if %build_oem
+	--with-oem-brand="%{product_distribution} %{product_version} for %{product_arch}"
+%endif
+
 %make
 
 %install
