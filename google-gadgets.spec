@@ -1,9 +1,9 @@
-%define build_oem 0
+%define build_oem 1
 
 Summary:	Google Gadgets for Linux
 Name:		google-gadgets
 Version:	0.10.2
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	Apache License
 Group:		Toys
 Source0:	http://google-gadgets-for-linux.googlecode.com/files/%name-for-linux-%version.tar.bz2
