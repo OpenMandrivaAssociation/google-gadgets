@@ -15,6 +15,7 @@ BuildRequires:	libltdl-devel
 BuildRequires:	gtk2-devel
 BuildRequires:	qt4-devel
 BuildRequires:	desktop-file-utils
+BuildRequires:	zip
 BuildRequires:	dbus-devel
 BuildRequires:	startup-notification-devel
 %if %mdkversion < 200900
