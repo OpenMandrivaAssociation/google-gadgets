@@ -3,7 +3,7 @@
 Summary:	Google Gadgets for Linux
 Name:		google-gadgets
 Version:	0.10.2
-Release:	%mkrel 3
+Release:	%mkrel 4
 License:	Apache License
 Group:		Toys
 Source0:	http://google-gadgets-for-linux.googlecode.com/files/%name-for-linux-%version.tar.bz2
@@ -14,6 +14,7 @@ BuildRequires:	curl-devel
 BuildRequires:	libltdl-devel
 BuildRequires:	gtk2-devel
 BuildRequires:	qt4-devel
+BuildRequires:	desktop-file-utils
 BuildRequires:	dbus-devel
 BuildRequires:	startup-notification-devel
 %if %mdkversion < 200900
@@ -229,6 +230,11 @@ This package contains developement files of Google Gadgets.
 %install
 rm -rf %{buildroot}
 %makeinstall_std
+
+desktop-file-install --vendor='' \
+	--dir %buildroot%_datadir/applications \
+	--remove-category='Network' \
+	%buildroot%_datadir/applications/*.desktop
 
 %find_lang %name
 
