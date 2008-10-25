@@ -5,7 +5,7 @@
 Summary:	Google Gadgets for Linux
 Name:		google-gadgets
 Version:	0.10.3
-Release:	%mkrel -c svn%svnrel 1
+Release:	%mkrel -c svn%svnrel 2 
 License:	Apache License
 Group:		Toys
 #Source0:	http://google-gadgets-for-linux.googlecode.com/files/%name-for-linux-%version.tar.bz2
@@ -207,6 +207,7 @@ fi
 %package -n %develname
 Summary:	Google Gadgets for Linux - Development files
 Group:		Toys
+Provides:   %name-devel = %version
 Requires:	%libname = %version
 Requires:	%libgtk = %version
 Requires:	%libqt = %version
