@@ -1,12 +1,16 @@
 %define build_oem 1
 
+%define svnrel 929
+
 Summary:	Google Gadgets for Linux
 Name:		google-gadgets
-Version:	0.10.2
-Release:	%mkrel 5
+Version:	0.10.3
+Release:	%mkrel -c svn%svnrel 1
 License:	Apache License
 Group:		Toys
-Source0:	http://google-gadgets-for-linux.googlecode.com/files/%name-for-linux-%version.tar.bz2
+#Source0:	http://google-gadgets-for-linux.googlecode.com/files/%name-for-linux-%version.tar.bz2
+Source0:	http://google-gadgets-for-linux.googlecode.com/files/%name-for-linux-r%svnrel.tar.bz2
+Patch0:		google-gadgets-for-linux-0.10.3-fix-linkage.patch
 URL:		http://code.google.com/p/google-gadgets-for-linux/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -44,10 +48,12 @@ Universal Gadgets on iGoogle.
 %_iconsdir/*/*/*/*
 %_datadir/google-gadgets
 %dir %_libdir/google-gadgets/modules
+%_libdir/google-gadgets/modules/analytics-usage-collector.so
 %_libdir/google-gadgets/modules/curl-xml-http-request.so
 %_libdir/google-gadgets/modules/dbus-script-class.so
 %_libdir/google-gadgets/modules/default-framework.so
 %_libdir/google-gadgets/modules/default-options.so
+%_libdir/google-gadgets/modules/gtk-flash-element.so
 %_libdir/google-gadgets/modules/gst-audio-framework.so
 %_libdir/google-gadgets/modules/gst-video-element.so
 %_libdir/google-gadgets/modules/smjs-script-runtime.so
@@ -79,6 +85,7 @@ This package contains shared library of Google Gadgets.
 %_libdir/libggadget-dbus-1.0.so.0*
 %_libdir/libggadget-js-1.0.so.0*
 %_libdir/libggadget-xdg-1.0.so.0*
+%_libdir/libggadget-npapi-1.0.so.0*
 
 #-----------------------------------------------------------------------
 %define libqt %mklibname ggadget-qt 1.0 0
@@ -190,6 +197,7 @@ fi
 %_libdir/google-gadgets/gtkmoz-browser-child
 %_libdir/google-gadgets/modules/gtk-edit-element.so
 %_libdir/google-gadgets/modules/gtk-system-framework.so
+%_libdir/google-gadgets/modules/gtk-flash-element.so
 %_libdir/google-gadgets/modules/gtkmoz-browser-element.so
 %_libdir/google-gadgets/modules/smjs-script-runtime.so
 
@@ -218,9 +226,12 @@ This package contains developement files of Google Gadgets.
 #-----------------------------------------------------------------------
 
 %prep
-%setup -q -n %name-for-linux-%version
+#setup -q -n %name-for-linux-%version
+%setup -q -n %name
+%patch0 -p0
 
 %build
+sh autotools/bootstrap.sh
 %configure2_5x --disable-static --disable-werror --disable-update-mime-database --disable-update-desktop-database \
 %if %build_oem
 	--with-oem-brand="%{product_distribution} %{product_version} for %{product_arch}"
