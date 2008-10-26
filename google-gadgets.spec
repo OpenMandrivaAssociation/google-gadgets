@@ -5,7 +5,7 @@
 Summary:	Google Gadgets for Linux
 Name:		google-gadgets
 Version:	0.10.3
-Release:	%mkrel -c svn%svnrel 4
+Release:	%mkrel -c svn%svnrel 5
 License:	Apache License
 Group:		Toys
 #Source0:	http://google-gadgets-for-linux.googlecode.com/files/%name-for-linux-%version.tar.bz2
@@ -43,7 +43,8 @@ Universal Gadgets on iGoogle.
 Summary:        Google Gadgets for Linux - common modules
 Group:          Toys
 Requires:	curl
-Conflicts:	%name < 0.10.3-0.svn929.3
+Conflicts:	%name < 0.10.3-0.svn929.5
+Conflicts:	%name-gtk < 0.10.3-0.svn929.5
 
 %description common
 Google Gadgets for Linux provides a platform for running desktop gadgets
@@ -69,7 +70,6 @@ This package contains common modules of Google Gadgets.
 %_libdir/google-gadgets/modules/gtk-flash-element.so
 %_libdir/google-gadgets/modules/gst-audio-framework.so
 %_libdir/google-gadgets/modules/gst-video-element.so
-%_libdir/google-gadgets/modules/smjs-script-runtime.so
 %_libdir/google-gadgets/modules/google-gadget-manager.so
 %_libdir/google-gadgets/modules/libxml2-xml-parser.so
 %_libdir/google-gadgets/modules/linux-system-framework.so
@@ -179,7 +179,8 @@ Group:		Toys
 Provides:	google-gadgets = %version-%release
 Obsoletes:	google-gadgets < 0.10.3-0.svn929.3
 Conflicts:      %name < 0.10.0
-Requires:	google-gadgets-common = %version
+Requires:	google-gadgets-common = %version-%release
+Conflicts:	google-gadgets-common < 0.10.3-0.svn929.5
 
 %description gtk
 Google Gadgets for Linux provides a platform for running desktop gadgets
@@ -212,7 +213,6 @@ fi
 %_libdir/google-gadgets/gtkmoz-browser-child
 %_libdir/google-gadgets/modules/gtk-edit-element.so
 %_libdir/google-gadgets/modules/gtk-system-framework.so
-%_libdir/google-gadgets/modules/gtk-flash-element.so
 %_libdir/google-gadgets/modules/gtkmoz-browser-element.so
 %_libdir/google-gadgets/modules/smjs-script-runtime.so
 
