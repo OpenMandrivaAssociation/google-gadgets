@@ -5,7 +5,7 @@
 Summary:	Google Gadgets for Linux
 Name:		google-gadgets
 Version:	0.10.3
-Release:	%mkrel -c svn%svnrel 3
+Release:	%mkrel -c svn%svnrel 4
 License:	Apache License
 Group:		Toys
 #Source0:	http://google-gadgets-for-linux.googlecode.com/files/%name-for-linux-%version.tar.bz2
@@ -119,6 +119,7 @@ This package contains qt4 library of Google Gadgets.
 Summary:	Google Gadgets for Linux - qt4 host
 Group:		Toys
 Provides:	google-gadgets = %version-%release
+Obsoletes:	google-gadgets < 0.10.3-0.svn929.3
 Requires:	google-gadgets-common = %version
 
 %description qt
@@ -176,6 +177,7 @@ This package contains gtk2 library of Google Gadgets.
 Summary:	Google Gadgets for Linux - gtk2 host
 Group:		Toys
 Provides:	google-gadgets = %version-%release
+Obsoletes:	google-gadgets < 0.10.3-0.svn929.3
 Conflicts:      %name < 0.10.0
 Requires:	google-gadgets-common = %version
 
