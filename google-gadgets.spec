@@ -5,7 +5,7 @@
 Summary:	Google Gadgets for Linux
 Name:		google-gadgets
 Version:	0.10.3
-Release:	%mkrel -c svn%svnrel 2 
+Release:	%mkrel -c svn%svnrel 3
 License:	Apache License
 Group:		Toys
 #Source0:	http://google-gadgets-for-linux.googlecode.com/files/%name-for-linux-%version.tar.bz2
@@ -30,8 +30,6 @@ BuildRequires:	xulrunner-devel-unstable
 %endif
 BuildRequires:	librsvg-devel
 BuildRequires:	libgstreamer0.10-plugins-base-devel
-Requires:	%name-host = %version
-Requires:	curl
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -40,7 +38,22 @@ under Linux, catering to the unique needs of Linux users. It is compatible
 with the gadgets written for Google Desktop for Windows as well as the
 Universal Gadgets on iGoogle.
 
-%files -f %name.lang
+#-----------------------------------------------------------------------
+%package common
+Summary:        Google Gadgets for Linux - common modules
+Group:          Toys
+Requires:	curl
+Conflicts:	%name < 0.10.3-0.svn929.3
+
+%description common
+Google Gadgets for Linux provides a platform for running desktop gadgets
+under Linux, catering to the unique needs of Linux users. It is compatible
+with the gadgets written for Google Desktop for Windows as well as the
+Universal Gadgets on iGoogle.
+
+This package contains common modules of Google Gadgets.
+
+%files common -f %name.lang
 %defattr(-,root,root)
 %doc NEWS THANKS README ChangeLog
 %_datadir/pixmaps/google-gadgets.png
@@ -62,10 +75,10 @@ Universal Gadgets on iGoogle.
 %_libdir/google-gadgets/modules/linux-system-framework.so
 
 %if %mdkversion < 200900
-%post
+%post common
 %update_mime_database
 
-%postun
+%postun common
 %clean_mime_database
 %endif
 
@@ -105,8 +118,8 @@ This package contains qt4 library of Google Gadgets.
 %package qt
 Summary:	Google Gadgets for Linux - qt4 host
 Group:		Toys
-Provides:	google-gadgets-host = %version
-Requires:	google-gadgets = %version
+Provides:	google-gadgets = %version-%release
+Requires:	google-gadgets-common = %version
 
 %description qt
 Google Gadgets for Linux provides a platform for running desktop gadgets
@@ -162,9 +175,9 @@ This package contains gtk2 library of Google Gadgets.
 %package gtk
 Summary:	Google Gadgets for Linux - gtk2 host
 Group:		Toys
-Provides:	google-gadgets-host = %version
+Provides:	google-gadgets = %version-%release
 Conflicts:      %name < 0.10.0
-Requires:	google-gadgets = %version
+Requires:	google-gadgets-common = %version
 
 %description gtk
 Google Gadgets for Linux provides a platform for running desktop gadgets
