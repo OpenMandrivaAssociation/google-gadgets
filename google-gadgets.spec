@@ -1,6 +1,6 @@
 %define build_oem 1
 
-%define svnrel 931
+%define svnrel 934
 
 Summary:	Google Gadgets for Linux
 Name:		google-gadgets
@@ -29,6 +29,7 @@ BuildRequires:	mozilla-firefox-devel
 BuildRequires:	xulrunner-devel-unstable
 %endif
 BuildRequires:	librsvg-devel
+BuildRequires:	flex
 BuildRequires:	libgstreamer0.10-plugins-base-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 
