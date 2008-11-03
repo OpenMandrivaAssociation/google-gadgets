@@ -1,6 +1,6 @@
 %define build_oem 1
 
-%define svnrel 941
+%define svnrel 944
 
 Summary:	Google Gadgets for Linux
 Name:		google-gadgets
