@@ -1,15 +1,12 @@
 %define build_oem 1
 
-%define svnrel 944
-
 Summary:	Google Gadgets for Linux
 Name:		google-gadgets
 Version:	0.10.3
-Release:	%mkrel -c svn%svnrel 1
+Release:	%mkrel 1
 License:	Apache License
 Group:		Toys
-#Source0:	http://google-gadgets-for-linux.googlecode.com/files/%name-for-linux-%version.tar.bz2
-Source0:	http://google-gadgets-for-linux.googlecode.com/files/%name-for-linux-r%svnrel.tar.bz2
+Source0:	http://google-gadgets-for-linux.googlecode.com/files/%name-for-linux-%version.tar.bz2
 Patch0:		google-gadgets-for-linux-0.10.3-fix-linkage.patch
 URL:		http://code.google.com/p/google-gadgets-for-linux/
 BuildRequires:	autoconf
@@ -243,9 +240,7 @@ This package contains developement files of Google Gadgets.
 #-----------------------------------------------------------------------
 
 %prep
-#setup -q -n %name-for-linux-%version
-%setup -q -n %name
-%patch0 -p0
+%setup -q -n %name-for-linux-%version
 
 %build
 sh autotools/bootstrap.sh
