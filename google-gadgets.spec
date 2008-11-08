@@ -3,7 +3,7 @@
 Summary:	Google Gadgets for Linux
 Name:		google-gadgets
 Version:	0.10.3
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	Apache License
 Group:		Toys
 Source0:	http://google-gadgets-for-linux.googlecode.com/files/%name-for-linux-%version.tar.bz2
@@ -41,8 +41,8 @@ Universal Gadgets on iGoogle.
 Summary:        Google Gadgets for Linux - common modules
 Group:          Toys
 Requires:	curl
-Conflicts:	%name < 0.10.3-0.svn929.5
-Conflicts:	%name-gtk < 0.10.3-0.svn929.5
+Conflicts:	%name < 0.10.3-2
+Conflicts:	%name-gtk < 0.10.3-2
 
 %description common
 Google Gadgets for Linux provides a platform for running desktop gadgets
@@ -65,7 +65,6 @@ This package contains common modules of Google Gadgets.
 %_libdir/google-gadgets/modules/dbus-script-class.so
 %_libdir/google-gadgets/modules/default-framework.so
 %_libdir/google-gadgets/modules/default-options.so
-%_libdir/google-gadgets/modules/gtk-flash-element.so
 %_libdir/google-gadgets/modules/gst-audio-framework.so
 %_libdir/google-gadgets/modules/gst-video-element.so
 %_libdir/google-gadgets/modules/google-gadget-manager.so
@@ -175,10 +174,10 @@ This package contains gtk2 library of Google Gadgets.
 Summary:	Google Gadgets for Linux - gtk2 host
 Group:		Toys
 Provides:	google-gadgets = %version-%release
-Obsoletes:	google-gadgets < 0.10.3-0.svn929.3
-Conflicts:      %name < 0.10.0
+Obsoletes:	google-gadgets < 0.10.3-2
+Conflicts:      %name < 0.10.3-2
 Requires:	google-gadgets-common = %version-%release
-Conflicts:	google-gadgets-common < 0.10.3-0.svn929.5
+Conflicts:	google-gadgets-common < 0.10.3-2
 
 %description gtk
 Google Gadgets for Linux provides a platform for running desktop gadgets
@@ -210,6 +209,7 @@ fi
 %_datadir/applications/ggl-gtk.desktop
 %_libdir/google-gadgets/gtkmoz-browser-child
 %_libdir/google-gadgets/modules/gtk-edit-element.so
+%_libdir/google-gadgets/modules/gtk-flash-element.so
 %_libdir/google-gadgets/modules/gtk-system-framework.so
 %_libdir/google-gadgets/modules/gtkmoz-browser-element.so
 %_libdir/google-gadgets/modules/smjs-script-runtime.so
