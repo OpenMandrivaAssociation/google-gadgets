@@ -241,6 +241,7 @@ This package contains developement files of Google Gadgets.
 
 %prep
 %setup -q -n %name-for-linux-%version
+%patch0 -p0
 
 %build
 sh autotools/bootstrap.sh
