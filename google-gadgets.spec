@@ -266,7 +266,8 @@ This package contains developement files of Google Gadgets.
 
 %build
 sh autotools/bootstrap.sh
-%configure2_5x --disable-static --disable-werror --disable-update-mime-database --disable-update-desktop-database \
+%configure2_5x --with-browser-plugins-dir=%_libdir/mozilla/plugins/\
+	--disable-static --disable-werror --disable-update-mime-database --disable-update-desktop-database \
 %if %build_oem
 	--with-oem-brand="%{product_distribution} %{product_version} for %{product_arch}"
 %endif
