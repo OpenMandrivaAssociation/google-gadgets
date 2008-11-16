@@ -3,7 +3,7 @@
 Summary:	Google Gadgets for Linux
 Name:		google-gadgets
 Version:	0.10.3
-Release:	%mkrel 3
+Release:	%mkrel 4
 License:	Apache License
 Group:		Toys
 Source0:	http://google-gadgets-for-linux.googlecode.com/files/%name-for-linux-%version.tar.bz2
@@ -118,6 +118,9 @@ Group:		Toys
 Provides:	google-gadgets = %version-%release
 Obsoletes:	google-gadgets < 0.10.3-0.svn929.3
 Requires:	google-gadgets-common = %version
+%if %mdkversion < 200900
+Requires:	google-gadgets-xul = = %version-%release
+%endif
 
 %description qt
 Google Gadgets for Linux provides a platform for running desktop gadgets
@@ -177,6 +180,7 @@ Provides:	google-gadgets = %version-%release
 Obsoletes:	google-gadgets < 0.10.3-2
 Conflicts:      %name < 0.10.3-2
 Requires:	google-gadgets-common = %version-%release
+Requires:	google-gadgets-xul = %version-%release
 Conflicts:	google-gadgets-common < 0.10.3-2
 
 %description gtk
@@ -207,10 +211,28 @@ fi
 %defattr(-,root,root)
 %_bindir/ggl-gtk
 %_datadir/applications/ggl-gtk.desktop
-%_libdir/google-gadgets/gtkmoz-browser-child
 %_libdir/google-gadgets/modules/gtk-edit-element.so
 %_libdir/google-gadgets/modules/gtk-flash-element.so
 %_libdir/google-gadgets/modules/gtk-system-framework.so
+
+#-----------------------------------------------------------------------
+%package xul
+Summary:        Google Gadgets for Linux - xul componets
+Group:          Toys
+Conflicts:      %name-gtk < 0.10.3-4
+Conflicts:      %name < 0.10.3-2
+
+%description xul
+Google Gadgets for Linux provides a platform for running desktop gadgets
+under Linux, catering to the unique needs of Linux users. It is compatible
+with the gadgets written for Google Desktop for Windows as well as the
+Universal Gadgets on iGoogle.
+
+This package contains xul components of Google Gadgets.
+
+%files xul
+%defattr(-,root,root)
+%_libdir/google-gadgets/gtkmoz-browser-child
 %_libdir/google-gadgets/modules/gtkmoz-browser-element.so
 %_libdir/google-gadgets/modules/smjs-script-runtime.so
 
