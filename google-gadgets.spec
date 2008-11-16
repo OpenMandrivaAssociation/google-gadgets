@@ -20,7 +20,6 @@ BuildRequires:	zip
 BuildRequires:	dbus-devel
 BuildRequires:	startup-notification-devel
 %if %mdkversion < 200900
-BuildRequires:	QtWebKit-devel
 BuildRequires:	mozilla-firefox-devel
 %else
 BuildRequires:	xulrunner-devel-unstable
