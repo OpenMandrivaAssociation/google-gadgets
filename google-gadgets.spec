@@ -210,6 +210,7 @@ fi
 %defattr(-,root,root)
 %_bindir/ggl-gtk
 %_datadir/applications/ggl-gtk.desktop
+%_datadir/applications/ggl-designer.desktop
 %_libdir/google-gadgets/modules/gtk-edit-element.so
 %_libdir/google-gadgets/modules/gtk-flash-element.so
 %_libdir/google-gadgets/modules/gtk-system-framework.so
