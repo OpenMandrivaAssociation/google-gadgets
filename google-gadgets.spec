@@ -1,9 +1,18 @@
 %define build_oem 1
 
+%if %mdkversion < 200900
+%define ffver %(rpm -q mozilla-firefox --queryformat %{VERSION})
+%define fflibname %mklibname mozilla-firefox %ffver
+%else
+%define xulrunner 1.9
+%define xullibname %mklibname xulrunner %xulrunner
+%define xulver %(rpm -q --queryformat %%{VERSION} %xullibname)
+%endif
+
 Summary:	Google Gadgets for Linux
 Name:		google-gadgets
 Version:	0.10.4
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	Apache License
 Group:		Toys
 Source0:	http://google-gadgets-for-linux.googlecode.com/files/%name-for-linux-%version.tar.bz2
@@ -118,7 +127,7 @@ Provides:	google-gadgets = %version-%release
 Obsoletes:	google-gadgets < 0.10.3-0.svn929.3
 Requires:	google-gadgets-common = %version
 %if %mdkversion < 200900
-Requires:	google-gadgets-xul = = %version-%release
+Requires:	google-gadgets-xul = %version-%release
 %endif
 
 %description qt
@@ -216,11 +225,17 @@ fi
 %_libdir/google-gadgets/modules/gtk-system-framework.so
 
 #-----------------------------------------------------------------------
+
 %package xul
 Summary:        Google Gadgets for Linux - xul componets
 Group:          Toys
 Conflicts:      %name-gtk < 0.10.3-4
 Conflicts:      %name < 0.10.3-2
+%if %mdkversion < 200900
+Requires:	%fflibname
+%else
+Requires:	%xullibname = %xulver
+%endif
 
 %description xul
 Google Gadgets for Linux provides a platform for running desktop gadgets
