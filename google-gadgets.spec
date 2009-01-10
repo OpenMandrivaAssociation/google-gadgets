@@ -16,7 +16,7 @@ Release:	%mkrel 1
 License:	Apache License
 Group:		Toys
 Source0:	http://google-gadgets-for-linux.googlecode.com/files/%name-for-linux-%version.tar.bz2
-Patch0:		google-gadgets-for-linux-0.10.4-fix-linkage.patch
+Patch0:		google-gadgets-for-linux-0.10.5-fix-linkage.patch
 URL:		http://code.google.com/p/google-gadgets-for-linux/
 BuildRequires:	autoconf
 BuildRequires:	automake
