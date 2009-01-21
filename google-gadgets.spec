@@ -35,7 +35,7 @@ BuildRequires:	xulrunner-devel-unstable
 %endif
 %if %mdkversion <= 200900
 Requires:	%name-host = %version
-%enidf
+%endif
 BuildRequires:	librsvg-devel
 BuildRequires:	flex
 BuildRequires:	libgstreamer0.10-plugins-base-devel
