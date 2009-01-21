@@ -12,7 +12,7 @@
 Summary:	Google Gadgets for Linux
 Name:		google-gadgets
 Version:	0.10.5
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	Apache License
 Group:		Toys
 Source0:	http://google-gadgets-for-linux.googlecode.com/files/%name-for-linux-%version.tar.bz2
@@ -33,6 +33,9 @@ BuildRequires:	mozilla-firefox-devel
 %else
 BuildRequires:	xulrunner-devel-unstable
 %endif
+%if %mdkversion <= 200900
+Requires:	%name-host = %version
+%enidf
 BuildRequires:	librsvg-devel
 BuildRequires:	flex
 BuildRequires:	libgstreamer0.10-plugins-base-devel
@@ -43,6 +46,11 @@ Google Gadgets for Linux provides a platform for running desktop gadgets
 under Linux, catering to the unique needs of Linux users. It is compatible
 with the gadgets written for Google Desktop for Windows as well as the
 Universal Gadgets on iGoogle.
+
+%if %mdkversion <= 200900
+%files
+%defattr(-,root,root)
+%endif
 
 #-----------------------------------------------------------------------
 %package common
@@ -123,8 +131,11 @@ This package contains qt4 library of Google Gadgets.
 %package qt
 Summary:	Google Gadgets for Linux - qt4 host
 Group:		Toys
-Provides:	google-gadgets = %version-%release
-Obsoletes:	google-gadgets < 0.10.3-0.svn929.3
+Provides:	google-gadgets-host = %version
+%if %mdkversion > 200900
+Provides:	google-gadgets = %version-%releass
+Obsoletes:	google-gadgets < %version-%releass
+%endif
 Requires:	google-gadgets-common = %version
 %if %mdkversion < 200900
 Requires:	google-gadgets-xul = %version-%release
@@ -184,8 +195,11 @@ This package contains gtk2 library of Google Gadgets.
 %package gtk
 Summary:	Google Gadgets for Linux - gtk2 host
 Group:		Toys
+Provides:	google-gadgets-host = %version
+%if %mdkversion > 200900
 Provides:	google-gadgets = %version-%release
-Obsoletes:	google-gadgets < 0.10.3-2
+Obsoletes:	google-gadgets < %version-%release
+%endif
 Conflicts:      %name < 0.10.3-2
 Requires:	google-gadgets-common = %version-%release
 Requires:	google-gadgets-xul = %version-%release
