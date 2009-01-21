@@ -133,8 +133,8 @@ Summary:	Google Gadgets for Linux - qt4 host
 Group:		Toys
 Provides:	google-gadgets-host = %version
 %if %mdkversion > 200900
-Provides:	google-gadgets = %version-%releass
-Obsoletes:	google-gadgets < %version-%releass
+Provides:	google-gadgets = %version-%release
+Obsoletes:	google-gadgets < %version-%release
 %endif
 Requires:	google-gadgets-common = %version
 %if %mdkversion < 200900
