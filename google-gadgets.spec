@@ -12,11 +12,12 @@
 Summary:	Google Gadgets for Linux
 Name:		google-gadgets
 Version:	0.10.5
-Release:	%mkrel 4
+Release:	%mkrel 5
 License:	Apache License
 Group:		Toys
 Source0:	http://google-gadgets-for-linux.googlecode.com/files/%name-for-linux-%version.tar.bz2
 Patch0:		google-gadgets-for-linux-0.10.5-fix-linkage.patch
+Patch1:		google-gadgets-for-linux-0.10.5-use-qtscript-in-qt-host.patch
 URL:		http://code.google.com/p/google-gadgets-for-linux/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -293,6 +294,9 @@ This package contains developement files of Google Gadgets.
 %prep
 %setup -q -n %name-for-linux-%version
 %patch0 -p0
+%if %mdkversion >= 200900
+%patch1 -p0
+%endif
 
 %build
 %configure2_5x --with-browser-plugins-dir=%_libdir/mozilla/plugins/\
