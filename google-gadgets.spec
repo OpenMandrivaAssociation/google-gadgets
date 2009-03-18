@@ -3,6 +3,7 @@
 %define xulrunner 1.9
 %define xullibname %mklibname xulrunner %xulrunner
 %define xulver %(rpm -q --queryformat %%{VERSION} %xullibname)
+%define libname %mklibname ggadget 1.0 0
 
 Summary:	Google Gadgets for Linux
 Name:		google-gadgets
@@ -52,6 +53,7 @@ Group:          Toys
 Requires:	curl
 Conflicts:	%name < 0.10.3-2
 Conflicts:	%name-gtk < 0.10.3-2
+Requires:	%libname >= %version-%release
 
 %description common
 Google Gadgets for Linux provides a platform for running desktop gadgets
@@ -89,7 +91,6 @@ This package contains common modules of Google Gadgets.
 %endif
 
 #-----------------------------------------------------------------------
-%define libname %mklibname ggadget 1.0 0
 
 %package -n %libname
 Summary:	Google Gadgets for Linux - shared libs
@@ -133,6 +134,7 @@ Requires:	google-gadgets-common = %version
 %if %mdkversion < 200900
 Requires:	google-gadgets-xul = %version-%release
 %endif
+Requires:	%libqt >= %version-%release
 
 %description qt
 Google Gadgets for Linux provides a platform for running desktop gadgets
@@ -197,6 +199,7 @@ Conflicts:      %name < 0.10.3-2
 Requires:	google-gadgets-common = %version-%release
 Requires:	google-gadgets-xul = %version-%release
 Conflicts:	google-gadgets-common < 0.10.3-2
+Requires:	%libgtk >= %version-%release
 
 %description gtk
 Google Gadgets for Linux provides a platform for running desktop gadgets
