@@ -2,13 +2,12 @@
 
 %define xulrunner 1.9
 %define xullibname %mklibname xulrunner %xulrunner
-%define xulver %(rpm -q --queryformat %%{VERSION} %xullibname)
 %define libname %mklibname ggadget 1.0 0
 
 Summary:	Google Gadgets for Linux
 Name:		google-gadgets
 Version:	0.11.0
-Release:	%mkrel 3
+Release:	%mkrel 4
 License:	Apache License
 Group:		Toys
 Source0:	http://google-gadgets-for-linux.googlecode.com/files/%name-for-linux-%version.tar.bz2
@@ -244,7 +243,7 @@ Summary:        Google Gadgets for Linux - xul componets
 Group:          Toys
 Conflicts:      %name-gtk < 0.10.3-4
 Conflicts:      %name < 0.10.3-2
-Requires:	%xullibname = %xulver
+Requires:	%xullibname
 
 %description xul
 Google Gadgets for Linux provides a platform for running desktop gadgets
