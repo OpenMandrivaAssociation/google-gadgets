@@ -7,7 +7,7 @@
 Summary:	Google Gadgets for Linux
 Name:		google-gadgets
 Version:	0.11.0
-Release:	%mkrel 4
+Release:	%mkrel 5
 License:	Apache License
 Group:		Toys
 Source0:	http://google-gadgets-for-linux.googlecode.com/files/%name-for-linux-%version.tar.bz2
@@ -261,7 +261,6 @@ This package contains xul components of Google Gadgets.
 
 #-----------------------------------------------------------------------
 
-%if 0
 %define libwebkitjs %mklibname ggadget-webkitjs 0
 %package -n %libwebkitjs
 Summary:        Google Gadgets for Linux - shared webkit js libs
@@ -292,7 +291,6 @@ This package contains webkit components of Google Gadgets.
 %defattr(-,root,root)
 %_libdir/google-gadgets/modules/gtkwebkit-browser-element.so
 %_libdir/google-gadgets/modules/webkit-script-runtime.so
-%endif
 
 #-----------------------------------------------------------------------
 %define develname %mklibname %name -d
@@ -329,7 +327,7 @@ This package contains developement files of Google Gadgets.
 
 %build
 %configure2_5x --with-browser-plugins-dir=%_libdir/mozilla/plugins/ \
-	--disable-soup-xml-http-request --disable-webkit-script-runtime --disable-gtkwebkit-browser-element \
+	--disable-soup-xml-http-request \
 	--disable-static --disable-werror --disable-update-mime-database --disable-update-desktop-database \
 %if %build_oem
 	--with-oem-brand="%{product_distribution} %{product_version} for %{product_arch}"
