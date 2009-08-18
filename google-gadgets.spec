@@ -1,6 +1,6 @@
 Name: google-gadgets
 Version: 0.11.0
-Release: %mkrel 6
+Release: %mkrel 7
 Summary: Google Gadgets for Linux
 License: Apache License
 Group: Toys
@@ -97,6 +97,7 @@ This package contains shared library of Google Gadgets.
 
 %package -n %libggadgetdbus
 Summary:	Google Gadgets for Linux - shared libs
+Conflicts:	%{_lib}ggadget1.0_0 < 0.11.0-6
 Group:		Toys
 
 %description -n %libggadgetdbus
@@ -113,6 +114,7 @@ This package contains shared library of Google Gadgets.
 
 %package -n %libggadgetjs
 Summary:	Google Gadgets for Linux - shared libs
+Conflicts:	%{_lib}ggadget1.0_0 < 0.11.0-6
 Group:		Toys
 
 %description -n %libggadgetjs
@@ -129,6 +131,7 @@ This package contains shared library of Google Gadgets.
 
 %package -n %libggadgetxdg
 Summary:	Google Gadgets for Linux - shared libs
+Conflicts:	%{_lib}ggadget1.0_0 < 0.11.0-6
 Group:		Toys
 
 %description -n %libggadgetxdg
@@ -145,6 +148,7 @@ This package contains shared library of Google Gadgets.
 
 %package -n %libggadgetnpapi
 Summary:	Google Gadgets for Linux - shared libs
+Conflicts:	%{_lib}ggadget1.0_0 < 0.11.0-6
 Group:		Toys
 
 %description -n %libggadgetnpapi
@@ -267,10 +271,9 @@ fi
 
 #-----------------------------------------------------------------------
 
-#-----------------------------------------------------------------------
-
 %define majorwk 0
 %define libwebkitjs %mklibname ggadget-webkitjs %{majorwk}
+
 %package -n %libwebkitjs
 Summary:        Google Gadgets for Linux - shared webkit js libs
 Group:          Toys
