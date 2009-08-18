@@ -18,7 +18,7 @@ BuildRequires:	desktop-file-utils
 BuildRequires:	zip
 BuildRequires:	dbus-devel
 BuildRequires:	startup-notification-devel
-BuildRequires:	xulrunner-devel-unstable
+BuildRequires:	xulrunner-devel
 BuildRequires:	webkitgtk-devel
 BuildRequires:	libsoup-2.4-devel
 BuildRequires:	librsvg-devel
