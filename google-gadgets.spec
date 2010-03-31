@@ -1,6 +1,6 @@
 Name: google-gadgets
 Version: 0.11.2
-Release: %mkrel 1
+Release: %mkrel 2
 Summary: Google Gadgets for Linux
 License: Apache License
 Group: Toys
@@ -337,6 +337,9 @@ rm -rf %{buildroot}
 desktop-file-install --vendor='' \
 	--dir %buildroot%_datadir/applications \
 	--remove-category='Network' \
+	--remove-category='News' \
+	--add-category='Utility' \
+	--remove-mime-type='app/gg' \
 	%buildroot%_datadir/applications/*.desktop
 
 %find_lang %name
