@@ -7,6 +7,7 @@ Group: Toys
 Source0: http://google-gadgets-for-linux.googlecode.com/files/%name-for-linux-%version.tar.bz2
 Patch0:	google-gadgets-for-linux-0.10.5-use-qtscript-in-qt-host.patch
 Patch1:	google-gadgets-for-linux-0.10.5-xlibs.patch
+Patch2: google-gadgets-for-linux-0.12-xulrunner-2.0.patch
 URL: http://code.google.com/p/google-gadgets-for-linux/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -320,6 +321,7 @@ This package contains developement files of Google Gadgets.
 %setup -q -n %name-for-linux-%version
 %patch0 -p0
 %patch1 -p0
+%patch2 -p0 -b .xul
 
 %build
 %configure2_5x \
