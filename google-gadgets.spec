@@ -1,3 +1,5 @@
+%bcond_with xulrunner
+
 Name: google-gadgets
 Version: 0.11.2
 Release: %mkrel 3
@@ -19,7 +21,9 @@ BuildRequires:	desktop-file-utils
 BuildRequires:	zip
 BuildRequires:	dbus-devel
 BuildRequires:	startup-notification-devel
-BuildRequires:	xulrunner-devel
+%if %{with xulrunner}
+Buildrequires:	xulrunner-devel
+%endif
 BuildRequires:	webkitgtk-devel
 BuildRequires:	libsoup-2.4-devel
 BuildRequires:	librsvg-devel
@@ -73,7 +77,9 @@ This package contains common modules of Google Gadgets.
 %_libdir/google-gadgets/modules/linux-system-framework.so
 %_libdir/google-gadgets/modules/soup-xml-http-request.so
 %_libdir/google-gadgets/modules/webkit-script-runtime.so
+%if %{with xulrunner}
 %_libdir/google-gadgets/modules/smjs-script-runtime.so
+%endif
 
 #-----------------------------------------------------------------------
 
@@ -267,8 +273,10 @@ fi
 %_libdir/google-gadgets/modules/gtk-flash-element.so
 %_libdir/google-gadgets/modules/gtk-system-framework.so
 %_libdir/google-gadgets/modules/gtkwebkit-browser-element.so
+%if %{with xulrunner}
 %_libdir/google-gadgets/gtkmoz-browser-child
 %_libdir/google-gadgets/modules/gtkmoz-browser-element.so
+%endif
 
 #-----------------------------------------------------------------------
 
@@ -327,6 +335,9 @@ This package contains developement files of Google Gadgets.
 %configure2_5x \
 	--with-browser-plugins-dir=%_libdir/mozilla/plugins/ \
 	--disable-static \
+%if !%{with xulrunner}
+	--disable-gtkmoz-browser-element --disable-smjs-script-runtime \
+%endif
 	--disable-werror \
 	--disable-update-mime-database --disable-update-desktop-database \
 	--with-oem-brand="%{product_distribution} %{product_version} for %{product_arch}"
