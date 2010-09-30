@@ -2,12 +2,12 @@
 
 Name: google-gadgets
 Version: 0.11.2
-Release: %mkrel 3
+Release: %mkrel 4
 Summary: Google Gadgets for Linux
 License: Apache License
 Group: Toys
 Source0: http://google-gadgets-for-linux.googlecode.com/files/%name-for-linux-%version.tar.bz2
-Patch0:	google-gadgets-for-linux-0.10.5-use-qtscript-in-qt-host.patch
+Patch0:	google-gadgets-for-linux-0.11.2-default-disable-xulrunner.patch
 Patch1:	google-gadgets-for-linux-0.10.5-xlibs.patch
 Patch2: google-gadgets-for-linux-0.12-xulrunner-2.0.patch
 URL: http://code.google.com/p/google-gadgets-for-linux/
