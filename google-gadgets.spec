@@ -2,7 +2,7 @@
 
 Name: google-gadgets
 Version: 0.11.2
-Release: %mkrel 5
+Release: %mkrel 6
 Summary: Google Gadgets for Linux
 License: Apache License
 Group: Toys
