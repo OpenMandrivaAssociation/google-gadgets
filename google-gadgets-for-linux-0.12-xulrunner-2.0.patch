@@ -1,0 +1,19 @@
+--- extensions/gtkmoz_browser_element/browser_child.cc.xul	2010-09-18 06:29:53.000000000 +0200
++++ extensions/gtkmoz_browser_element/browser_child.cc	2010-09-18 08:06:20.000000000 +0200
+@@ -62,7 +62,6 @@
+ #include <nsIDOMDocumentView.h>
+ #include <nsIDOMNode.h>
+ #include <nsIDOMWindow.h>
+-#include <nsIGenericFactory.h>
+ #include <nsIInterfaceRequestor.h>
+ #include <nsIInterfaceRequestorUtils.h>
+ #include <nsIPrefBranch.h>
+@@ -299,7 +298,7 @@
+         double_value >= JSVAL_INT_MIN && double_value <= JSVAL_INT_MAX) {
+       value = INT_TO_JSVAL(static_cast<int32>(double_value));
+     } else {
+-      value = DOUBLE_TO_JSVAL(JS_NewDouble(cx, double_value));
++      JS_NewNumberValue(cx, double_value, &value);
+     }
+   } else if (first_char == '"' || first_char == '\'') {
+     ggadget::UTF16String s;
