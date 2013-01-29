@@ -1,14 +1,20 @@
+# We actually use libtool to load modules
+%define dont_remove_libtool_files 1
+
+# Currently broken
 %bcond_with xulrunner
 
 Name: google-gadgets
-Version: 0.11.2
-Release: %mkrel 7
+Version: 0.11.3
+Release: 0.1292.1
 Summary: Google Gadgets for Linux
 License: Apache License
 Group: Toys
-Source0: http://google-gadgets-for-linux.googlecode.com/files/%name-for-linux-%version.tar.bz2
+# Actually svn rev. 1292 -- the latest released version doesn't build
+# with modern compilers
+Source0: http://google-gadgets-for-linux.googlecode.com/files/%name-for-linux-%version.tar.xz
 Patch0:	google-gadgets-for-linux-0.11.2-default-disable-xulrunner.patch
-Patch1:	google-gadgets-for-linux-0.10.5-xlibs.patch
+Patch1: ggadgets-compile.patch
 Patch2: google-gadgets-for-linux-0.12-xulrunner-2.0.patch
 URL: http://code.google.com/p/google-gadgets-for-linux/
 BuildRequires:	autoconf
@@ -25,11 +31,10 @@ BuildRequires:	startup-notification-devel
 Buildrequires:	xulrunner-devel
 %endif
 BuildRequires:	webkitgtk-devel
-BuildRequires:	libsoup-2.4-devel
+BuildRequires:	pkgconfig(libsoup-2.4)
 BuildRequires:	librsvg-devel
 BuildRequires:	flex
 BuildRequires:	libgstreamer0.10-plugins-base-devel
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 Google Gadgets for Linux provides a platform for running desktop gadgets
@@ -64,21 +69,21 @@ This package contains common modules of Google Gadgets.
 %_iconsdir/*/*/*/*
 %_datadir/google-gadgets
 %dir %_libdir/google-gadgets/modules
-%_libdir/google-gadgets/modules/analytics-usage-collector.so
-%_libdir/google-gadgets/modules/curl-xml-http-request.so
-%_libdir/google-gadgets/modules/dbus-script-class.so
-%_libdir/google-gadgets/modules/default-framework.so
-%_libdir/google-gadgets/modules/default-options.so
-%_libdir/google-gadgets/modules/gst-audio-framework.so
-%_libdir/google-gadgets/modules/gst-video-element.so
-%_libdir/google-gadgets/modules/google-gadget-manager.so
-%_libdir/google-gadgets/modules/html-flash-element.so
-%_libdir/google-gadgets/modules/libxml2-xml-parser.so
-%_libdir/google-gadgets/modules/linux-system-framework.so
-%_libdir/google-gadgets/modules/soup-xml-http-request.so
-%_libdir/google-gadgets/modules/webkit-script-runtime.so
+%_libdir/google-gadgets/modules/analytics-usage-collector.*
+%_libdir/google-gadgets/modules/curl-xml-http-request.*
+%_libdir/google-gadgets/modules/dbus-script-class.*
+%_libdir/google-gadgets/modules/default-framework.*
+%_libdir/google-gadgets/modules/default-options.*
+%_libdir/google-gadgets/modules/gst-audio-framework.*
+%_libdir/google-gadgets/modules/gst-video-element.*
+%_libdir/google-gadgets/modules/google-gadget-manager.*
+%_libdir/google-gadgets/modules/html-flash-element.*
+%_libdir/google-gadgets/modules/libxml2-xml-parser.*
+%_libdir/google-gadgets/modules/linux-system-framework.*
+%_libdir/google-gadgets/modules/soup-xml-http-request.*
+%_libdir/google-gadgets/modules/webkit-script-runtime.*
 %if %{with xulrunner}
-%_libdir/google-gadgets/modules/smjs-script-runtime.so
+%_libdir/google-gadgets/modules/smjs-script-runtime.*
 %endif
 
 #-----------------------------------------------------------------------
@@ -212,11 +217,11 @@ fi
 %defattr(-,root,root)
 %_bindir/ggl-qt
 %_datadir/applications/ggl-qt.desktop
-%_libdir/google-gadgets/modules/qt-edit-element.so
-%_libdir/google-gadgets/modules/qt-system-framework.so
-%_libdir/google-gadgets/modules/qt-xml-http-request.so
-%_libdir/google-gadgets/modules/qtwebkit-browser-element.so
-%_libdir/google-gadgets/modules/qt-script-runtime.so
+%_libdir/google-gadgets/modules/qt-edit-element.*
+%_libdir/google-gadgets/modules/qt-system-framework.*
+%_libdir/google-gadgets/modules/qt-xml-http-request.*
+%_libdir/google-gadgets/modules/qtwebkit-browser-element.*
+%_libdir/google-gadgets/modules/qt-script-runtime.*
 
 #-----------------------------------------------------------------------
 
@@ -269,13 +274,13 @@ fi
 %_bindir/ggl-gtk
 %_datadir/applications/ggl-gtk.desktop
 %_datadir/applications/ggl-designer.desktop
-%_libdir/google-gadgets/modules/gtk-edit-element.so
-%_libdir/google-gadgets/modules/gtk-flash-element.so
-%_libdir/google-gadgets/modules/gtk-system-framework.so
-%_libdir/google-gadgets/modules/gtkwebkit-browser-element.so
+%_libdir/google-gadgets/modules/gtk-edit-element.*
+%_libdir/google-gadgets/modules/gtk-flash-element.*
+%_libdir/google-gadgets/modules/gtk-system-framework.*
+%_libdir/google-gadgets/modules/gtkwebkit-browser-element.*
 %if %{with xulrunner}
 %_libdir/google-gadgets/gtkmoz-browser-child
-%_libdir/google-gadgets/modules/gtkmoz-browser-element.so
+%_libdir/google-gadgets/modules/gtkmoz-browser-element.*
 %endif
 
 #-----------------------------------------------------------------------
@@ -301,7 +306,7 @@ This package contains shared webkit js library of Google Gadgets.
 %package -n %develname
 Summary:	Google Gadgets for Linux - Development files
 Group:		Toys
-Provides:   %name-devel = %version
+Provides:	%name-devel = %version
 Requires:	%libggadget = %version
 Requires:	%libggadgetdbus = %version
 Requires:	%libggadgetnpapi = %version
@@ -318,8 +323,6 @@ This package contains developement files of Google Gadgets.
 %defattr(-,root,root)
 %_includedir/*
 %_libdir/google-gadgets/include
-%_libdir/google-gadgets/modules/*.la
-%_libdir/*.la
 %_libdir/*.so
 %_libdir/pkgconfig/*.pc
 
@@ -328,10 +331,20 @@ This package contains developement files of Google Gadgets.
 %prep
 %setup -q -n %name-for-linux-%version
 %patch0 -p0
-%patch1 -p0
+%patch1 -p1 -b .compile~
 %patch2 -p0 -b .xul
 
+libtoolize --force --ltdl
+aclocal
+autoheader
+automake -a
+autoconf
+
 %build
+# As of 0.11.3-1292, -fpermissive and -fno-strict-aliasing are needed to
+# even start getting things to build.
+CFLAGS="$RPM_OPT_FLAGS -fpermissive -fno-strict-aliasing" \
+CXXFLAGS="$RPM_OPT_FLAGS -fpermissive -fno-strict-aliasing" \
 %configure2_5x \
 	--with-browser-plugins-dir=%_libdir/mozilla/plugins/ \
 	--disable-static \
@@ -345,7 +358,6 @@ This package contains developement files of Google Gadgets.
 %make
 
 %install
-rm -rf %{buildroot}
 %makeinstall_std
 
 desktop-file-install --vendor='' \
@@ -356,7 +368,8 @@ desktop-file-install --vendor='' \
 	--remove-mime-type='app/gg' \
 	%buildroot%_datadir/applications/*.desktop
 
-%find_lang %name
+# Just because we load modules with libtool doesn't mean we have
+# to ship .la mess for libraries...
+rm -f %buildroot%_libdir/*.la
 
-%clean
-rm -rf %{buildroot}
+%find_lang %name || touch %name.lang

@@ -1,0 +1,114 @@
+--- google-gadgets-for-linux-0.11.3/extensions/linux_system_framework/network.cc.bero	2013-01-29 02:47:47.699781867 +0100
++++ google-gadgets-for-linux-0.11.3/extensions/linux_system_framework/network.cc	2013-01-29 02:48:37.429191339 +0100
+@@ -23,13 +23,13 @@ namespace ggadget {
+ namespace framework {
+ namespace linux_system {
+ 
+-#ifdef NM_DEVICE_TYPE_WIFI
++#if 1 //def NM_DEVICE_TYPE_WIFI (it's an enum, not a define...)
+ static const int kDeviceTypeWifi = NM_DEVICE_TYPE_WIFI;
+ #else
+ static const int kDeviceTypeWifi = DEVICE_TYPE_802_11_WIRELESS;
+ #endif
+ 
+-#ifdef NM_DEVICE_TYPE_ETHERNET
++#if 1 //def NM_DEVICE_TYPE_ETHERNET (it's an enum, not a define...)
+ static const int kDeviceTypeEthernet = NM_DEVICE_TYPE_ETHERNET;
+ #else
+ static const int kDeviceTypeEthernet = DEVICE_TYPE_802_3_ETHERNET;
+--- google-gadgets-for-linux-0.11.3/extensions/linux_system_framework/process.cc.bero	2013-01-29 02:46:40.330581676 +0100
++++ google-gadgets-for-linux-0.11.3/extensions/linux_system_framework/process.cc	2013-01-29 02:46:47.165501010 +0100
+@@ -16,6 +16,7 @@
+ 
+ #include <sys/types.h>
+ #include <dirent.h>
++#include <unistd.h>
+ #include <cstdlib>
+ 
+ #ifdef HAVE_X11
+--- google-gadgets-for-linux-0.11.3/extensions/linux_system_framework/wireless.cc.bero	2013-01-29 02:48:17.321430693 +0100
++++ google-gadgets-for-linux-0.11.3/extensions/linux_system_framework/wireless.cc	2013-01-29 02:48:27.094314431 +0100
+@@ -77,7 +77,7 @@ namespace linux_system {
+ 
+ using namespace ggadget::dbus;
+ 
+-#ifdef NM_DEVICE_TYPE_WIFI
++#if 1 //def NM_DEVICE_TYPE_WIFI (it's an enum, not a define)
+ static const int kDeviceTypeWifi = NM_DEVICE_TYPE_WIFI;
+ #else
+ static const int kDeviceTypeWifi = DEVICE_TYPE_802_11_WIRELESS;
+--- google-gadgets-for-linux-0.11.3/extensions/qt_system_framework/qt_system_framework.cc.bero	2013-01-29 02:46:15.257877912 +0100
++++ google-gadgets-for-linux-0.11.3/extensions/qt_system_framework/qt_system_framework.cc	2013-01-29 02:46:20.844811277 +0100
+@@ -14,6 +14,7 @@
+   limitations under the License.
+ */
+ 
++#include <unistd.h>
+ #include <vector>
+ #include <QtGui/QCursor>
+ #include <QtGui/QFileDialog>
+--- google-gadgets-for-linux-0.11.3/gadgets/designer/designer_script_utils.cc.bero	2013-01-29 02:49:13.706770824 +0100
++++ google-gadgets-for-linux-0.11.3/gadgets/designer/designer_script_utils.cc	2013-01-29 02:49:22.493666583 +0100
+@@ -14,6 +14,7 @@
+   limitations under the License.
+ */
+ 
++#include <unistd.h>
+ #include <algorithm>
+ #include <cstring>
+ #include <string>
+--- google-gadgets-for-linux-0.11.3/ggadget/gtk/main_loop.cc.bero	2013-01-29 02:43:42.931672257 +0100
++++ google-gadgets-for-linux-0.11.3/ggadget/gtk/main_loop.cc	2013-01-29 02:44:00.661462437 +0100
+@@ -16,9 +16,8 @@
+ 
+ #include <fcntl.h>
+ #include <stdint.h>
+-#include <glib/ghash.h>
++#include <glib.h>
+ #include <gtk/gtk.h>
+-#include <glib/gthread.h>
+ #include <ggadget/common.h>
+ #include "main_loop.h"
+ #include "utilities.h"
+--- google-gadgets-for-linux-0.11.3/ggadget/qt/Makefile.am.bero	2013-01-29 02:44:16.827271347 +0100
++++ google-gadgets-for-linux-0.11.3/ggadget/qt/Makefile.am	2013-01-29 02:45:26.077451396 +0100
+@@ -69,7 +69,7 @@ libggadget_qt@GGL_EPOCH@_la_CPPFLAGS = \
+ 			  $(PREDEFINED_MACROS)
+ 
+ libggadget_qt@GGL_EPOCH@_la_LIBADD = \
+-			  $(QT4_LIBS) \
++			  $(QT4_LIBS) -lX11 -lXext \
+ 			  $(top_builddir)/ggadget/libggadget@GGL_EPOCH@.la \
+ 			  $(top_builddir)/ggadget/xdg/libggadget-xdg@GGL_EPOCH@.la
+ 
+--- google-gadgets-for-linux-0.11.3/ggadget/uuid.cc.bero	2013-01-29 02:42:28.220554398 +0100
++++ google-gadgets-for-linux-0.11.3/ggadget/uuid.cc	2013-01-29 02:42:35.269470645 +0100
+@@ -20,6 +20,7 @@
+ #include <sys/stat.h>
+ #include <sys/time.h>
+ #include <fcntl.h>
++#include <unistd.h>
+ #include <cstdio>
+ #include <cstdlib>
+ #include <cstring>
+--- google-gadgets-for-linux-0.11.3/ggadget/xdg/icon_theme.cc.bero	2013-01-29 02:43:02.484151437 +0100
++++ google-gadgets-for-linux-0.11.3/ggadget/xdg/icon_theme.cc	2013-01-29 02:43:07.933086570 +0100
+@@ -15,6 +15,7 @@
+ */
+ #include <sys/time.h>
+ #include <time.h>
++#include <unistd.h>
+ #include <cstdlib>
+ 
+ #include <map>
+--- google-gadgets-for-linux-0.11.3/hosts/gtk/main.cc.bero	2013-01-29 02:50:12.762078065 +0100
++++ google-gadgets-for-linux-0.11.3/hosts/gtk/main.cc	2013-01-29 02:50:17.630020302 +0100
+@@ -15,7 +15,7 @@
+ */
+ 
+ #include <gtk/gtk.h>
+-#include <glib/gthread.h>
++#include <glib.h>
+ #include <locale.h>
+ #include <signal.h>
+ #include <unistd.h>
