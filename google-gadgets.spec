@@ -4,27 +4,27 @@
 # Currently broken
 %bcond_with xulrunner
 
-Name: google-gadgets
-Version: 0.11.3
-Release: 0.1292.1
-Summary: Google Gadgets for Linux
-License: Apache License
-Group: Toys
+Summary:	Google Gadgets for Linux
+Name:		google-gadgets
+Version:	0.11.3
+Release:	0.1292.1
+License:	Apache License
+Group:		Toys
 # Actually svn rev. 1292 -- the latest released version doesn't build
 # with modern compilers
-Source0: http://google-gadgets-for-linux.googlecode.com/files/%name-for-linux-%version.tar.xz
-Patch0:	google-gadgets-for-linux-0.11.2-default-disable-xulrunner.patch
-Patch1: ggadgets-compile.patch
-Patch2: google-gadgets-for-linux-0.12-xulrunner-2.0.patch
-URL: http://code.google.com/p/google-gadgets-for-linux/
-BuildRequires:	autoconf
-BuildRequires:	automake
+Url:		http://code.google.com/p/google-gadgets-for-linux/
+Source0:	http://google-gadgets-for-linux.googlecode.com/files/%{name}-for-linux-%{version}.tar.xz
+Patch0:		google-gadgets-for-linux-0.11.2-default-disable-xulrunner.patch
+Patch1:		ggadgets-compile.patch
+Patch2:		google-gadgets-for-linux-0.12-xulrunner-2.0.patch
+
+BuildRequires:	desktop-file-utils
+BuildRequires:	flex
+BuildRequires:	zip
 BuildRequires:	curl-devel
 BuildRequires:	libltdl-devel
 BuildRequires:	gtk2-devel
 BuildRequires:	qt4-devel
-BuildRequires:	desktop-file-utils
-BuildRequires:	zip
 BuildRequires:	dbus-devel
 BuildRequires:	startup-notification-devel
 %if %{with xulrunner}
@@ -33,7 +33,6 @@ Buildrequires:	xulrunner-devel
 BuildRequires:	webkitgtk-devel
 BuildRequires:	pkgconfig(libsoup-2.4)
 BuildRequires:	librsvg-devel
-BuildRequires:	flex
 BuildRequires:	libgstreamer0.10-plugins-base-devel
 
 %description
@@ -48,10 +47,10 @@ Universal Gadgets on iGoogle.
 Summary: Google Gadgets for Linux - common modules
 Group: Toys
 Requires: curl
-Conflicts: %name < 0.10.3-2
-Conflicts: %name-tk < 0.10.3-2
-Obsoletes: %name-webkit
-Obsoletes: %name-xul
+Conflicts: %{name} < 0.10.3-2
+Conflicts: %{name}-tk < 0.10.3-2
+Obsoletes: %{name}-webkit
+Obsoletes: %{name}-xul
 
 %description common
 Google Gadgets for Linux provides a platform for running desktop gadgets
@@ -61,29 +60,28 @@ Universal Gadgets on iGoogle.
 
 This package contains common modules of Google Gadgets.
 
-%files common -f %name.lang
-%defattr(-,root,root)
+%files common -f %{name}.lang
 %doc NEWS THANKS README ChangeLog
-%_datadir/pixmaps/google-gadgets.png
-%_datadir/mime/packages/00-google-gadgets.xml
+%{_datadir}/pixmaps/google-gadgets.png
+%{_datadir}/mime/packages/00-google-gadgets.xml
 %_iconsdir/*/*/*/*
-%_datadir/google-gadgets
-%dir %_libdir/google-gadgets/modules
-%_libdir/google-gadgets/modules/analytics-usage-collector.*
-%_libdir/google-gadgets/modules/curl-xml-http-request.*
-%_libdir/google-gadgets/modules/dbus-script-class.*
-%_libdir/google-gadgets/modules/default-framework.*
-%_libdir/google-gadgets/modules/default-options.*
-%_libdir/google-gadgets/modules/gst-audio-framework.*
-%_libdir/google-gadgets/modules/gst-video-element.*
-%_libdir/google-gadgets/modules/google-gadget-manager.*
-%_libdir/google-gadgets/modules/html-flash-element.*
-%_libdir/google-gadgets/modules/libxml2-xml-parser.*
-%_libdir/google-gadgets/modules/linux-system-framework.*
-%_libdir/google-gadgets/modules/soup-xml-http-request.*
-%_libdir/google-gadgets/modules/webkit-script-runtime.*
+%{_datadir}/google-gadgets
+%dir %{_libdir}/google-gadgets/modules
+%{_libdir}/google-gadgets/modules/analytics-usage-collector.*
+%{_libdir}/google-gadgets/modules/curl-xml-http-request.*
+%{_libdir}/google-gadgets/modules/dbus-script-class.*
+%{_libdir}/google-gadgets/modules/default-framework.*
+%{_libdir}/google-gadgets/modules/default-options.*
+%{_libdir}/google-gadgets/modules/gst-audio-framework.*
+%{_libdir}/google-gadgets/modules/gst-video-element.*
+%{_libdir}/google-gadgets/modules/google-gadget-manager.*
+%{_libdir}/google-gadgets/modules/html-flash-element.*
+%{_libdir}/google-gadgets/modules/libxml2-xml-parser.*
+%{_libdir}/google-gadgets/modules/linux-system-framework.*
+%{_libdir}/google-gadgets/modules/soup-xml-http-request.*
+%{_libdir}/google-gadgets/modules/webkit-script-runtime.*
 %if %{with xulrunner}
-%_libdir/google-gadgets/modules/smjs-script-runtime.*
+%{_libdir}/google-gadgets/modules/smjs-script-runtime.*
 %endif
 
 #-----------------------------------------------------------------------
@@ -99,8 +97,7 @@ Group:		Toys
 This package contains shared library of Google Gadgets.
 
 %files -n %libggadget
-%defattr(-,root,root)
-%_libdir/libggadget-1.0.so.%{majorggadget}*
+%{_libdir}/libggadget-1.0.so.%{majorggadget}*
 
 #-----------------------------------------------------------------------
 
@@ -116,8 +113,7 @@ Group:		Toys
 This package contains shared library of Google Gadgets.
 
 %files -n %libggadgetdbus
-%defattr(-,root,root)
-%_libdir/libggadget-dbus-1.0.so.%{majorggadgetdbus}*
+%{_libdir}/libggadget-dbus-1.0.so.%{majorggadgetdbus}*
 
 #-----------------------------------------------------------------------
 
@@ -133,8 +129,7 @@ Group:		Toys
 This package contains shared library of Google Gadgets.
 
 %files -n %libggadgetjs
-%defattr(-,root,root)
-%_libdir/libggadget-js-1.0.so.%{majorggadgetjs}*
+%{_libdir}/libggadget-js-1.0.so.%{majorggadgetjs}*
 
 #-----------------------------------------------------------------------
 
@@ -150,8 +145,7 @@ Group:		Toys
 This package contains shared library of Google Gadgets.
 
 %files -n %libggadgetxdg
-%defattr(-,root,root)
-%_libdir/libggadget-xdg-1.0.so.%{majorggadgetxdg}*
+%{_libdir}/libggadget-xdg-1.0.so.%{majorggadgetxdg}*
 
 #-----------------------------------------------------------------------
 
@@ -167,8 +161,7 @@ Group:		Toys
 This package contains shared library of Google Gadgets.
 
 %files -n %libggadgetnpapi
-%defattr(-,root,root)
-%_libdir/libggadget-npapi-1.0.so.%{majorggadgetnpapi}*
+%{_libdir}/libggadget-npapi-1.0.so.%{majorggadgetnpapi}*
 
 #-----------------------------------------------------------------------
 
@@ -183,19 +176,18 @@ Group:		Toys
 This package contains qt4 library of Google Gadgets.
 
 %files -n %libqt
-%defattr(-,root,root)
-%_libdir/libggadget-qt-1.0.so.%{majorqt}*
+%{_libdir}/libggadget-qt-1.0.so.%{majorqt}*
 
 #-----------------------------------------------------------------------
 
 %package qt
 Summary:	Google Gadgets for Linux - qt4 host
 Group:		Toys
-Provides:	google-gadgets-host = %version
-Provides:	google-gadgets = %version-%release
-Obsoletes:	google-gadgets < %version-%release
-Requires:	google-gadgets-common = %version
-Requires:	%libqt >= %version-%release
+Provides:	google-gadgets-host = %{version}
+Provides:	google-gadgets = %{version}-%{release}
+Obsoletes:	google-gadgets < %{version}-%{release}
+Requires:	google-gadgets-common = %{version}
+Requires:	%libqt >= %{version}-%{release}
 
 %description qt
 Google Gadgets for Linux provides a platform for running desktop gadgets
@@ -214,14 +206,13 @@ if ! [ -e %{_bindir}/ggl-qt ]; then
 fi
 
 %files qt
-%defattr(-,root,root)
 %_bindir/ggl-qt
-%_datadir/applications/ggl-qt.desktop
-%_libdir/google-gadgets/modules/qt-edit-element.*
-%_libdir/google-gadgets/modules/qt-system-framework.*
-%_libdir/google-gadgets/modules/qt-xml-http-request.*
-%_libdir/google-gadgets/modules/qtwebkit-browser-element.*
-%_libdir/google-gadgets/modules/qt-script-runtime.*
+%{_datadir}/applications/ggl-qt.desktop
+%{_libdir}/google-gadgets/modules/qt-edit-element.*
+%{_libdir}/google-gadgets/modules/qt-system-framework.*
+%{_libdir}/google-gadgets/modules/qt-xml-http-request.*
+%{_libdir}/google-gadgets/modules/qtwebkit-browser-element.*
+%{_libdir}/google-gadgets/modules/qt-script-runtime.*
 
 #-----------------------------------------------------------------------
 
@@ -236,21 +227,20 @@ Group:		Toys
 This package contains gtk2 library of Google Gadgets.
 
 %files -n %libgtk
-%defattr(-,root,root)
-%_libdir/libggadget-gtk-1.0.so.%{majorgtk}*
+%{_libdir}/libggadget-gtk-1.0.so.%{majorgtk}*
 
 #-----------------------------------------------------------------------
 
 %package gtk
 Summary:	Google Gadgets for Linux - gtk2 host
 Group:		Toys
-Provides:	google-gadgets-host = %version
-Provides:	google-gadgets = %version-%release
-Conflicts:      %name < 0.10.3-2
+Provides:	google-gadgets-host = %{version}
+Provides:	google-gadgets = %{version}-%{release}
+Conflicts:      %{name} < 0.10.3-2
 Conflicts:	google-gadgets-common < 0.10.3-2
-Requires:	google-gadgets-common = %version-%release
-Requires:	%libgtk >= %version-%release
-Obsoletes:	google-gadgets < %version-%release
+Requires:	google-gadgets-common = %{version}-%{release}
+Requires:	%libgtk >= %{version}-%{release}
+Obsoletes:	google-gadgets < %{version}-%{release}
 Obsoletes:	google-gadgets-xul
 
 %description gtk
@@ -270,17 +260,16 @@ if ! [ -e %{_bindir}/ggl-gtk ]; then
 fi
 
 %files gtk
-%defattr(-,root,root)
 %_bindir/ggl-gtk
-%_datadir/applications/ggl-gtk.desktop
-%_datadir/applications/ggl-designer.desktop
-%_libdir/google-gadgets/modules/gtk-edit-element.*
-%_libdir/google-gadgets/modules/gtk-flash-element.*
-%_libdir/google-gadgets/modules/gtk-system-framework.*
-%_libdir/google-gadgets/modules/gtkwebkit-browser-element.*
+%{_datadir}/applications/ggl-gtk.desktop
+%{_datadir}/applications/ggl-designer.desktop
+%{_libdir}/google-gadgets/modules/gtk-edit-element.*
+%{_libdir}/google-gadgets/modules/gtk-flash-element.*
+%{_libdir}/google-gadgets/modules/gtk-system-framework.*
+%{_libdir}/google-gadgets/modules/gtkwebkit-browser-element.*
 %if %{with xulrunner}
-%_libdir/google-gadgets/gtkmoz-browser-child
-%_libdir/google-gadgets/modules/gtkmoz-browser-element.*
+%{_libdir}/google-gadgets/gtkmoz-browser-child
+%{_libdir}/google-gadgets/modules/gtkmoz-browser-element.*
 %endif
 
 #-----------------------------------------------------------------------
@@ -296,40 +285,38 @@ Group:          Toys
 This package contains shared webkit js library of Google Gadgets.
 
 %files -n %libwebkitjs
-%defattr(-,root,root)
-%_libdir/libggadget-webkitjs-1.0.so.%{majorwk}*
+%{_libdir}/libggadget-webkitjs-1.0.so.%{majorwk}*
 
 #-----------------------------------------------------------------------
 
-%define develname %mklibname %name -d
+%define devname %mklibname %{name} -d
 
-%package -n %develname
+%package -n %devname
 Summary:	Google Gadgets for Linux - Development files
 Group:		Toys
-Provides:	%name-devel = %version
-Requires:	%libggadget = %version
-Requires:	%libggadgetdbus = %version
-Requires:	%libggadgetnpapi = %version
-Requires:	%libggadgetjs = %version
-Requires:	%libggadgetxdg = %version
-Requires:	%libgtk = %version
-Requires:	%libqt = %version
-Requires:	%libwebkitjs = %version
+Provides:	%{name}-devel = %{version}
+Requires:	%libggadget = %{version}
+Requires:	%libggadgetdbus = %{version}
+Requires:	%libggadgetnpapi = %{version}
+Requires:	%libggadgetjs = %{version}
+Requires:	%libggadgetxdg = %{version}
+Requires:	%libgtk = %{version}
+Requires:	%libqt = %{version}
+Requires:	%libwebkitjs = %{version}
 
-%description -n %develname
+%description -n %devname
 This package contains developement files of Google Gadgets.
 
-%files -n %develname
-%defattr(-,root,root)
+%files -n %devname
 %_includedir/*
-%_libdir/google-gadgets/include
-%_libdir/*.so
-%_libdir/pkgconfig/*.pc
+%{_libdir}/google-gadgets/include
+%{_libdir}/*.so
+%{_libdir}/pkgconfig/*.pc
 
 #-----------------------------------------------------------------------
 
 %prep
-%setup -q -n %name-for-linux-%version
+%setup -qn %{name}-for-linux-%{version}
 %patch0 -p0
 %patch1 -p1 -b .compile~
 %patch2 -p0 -b .xul
@@ -346,13 +333,15 @@ autoconf
 CFLAGS="$RPM_OPT_FLAGS -fpermissive -fno-strict-aliasing" \
 CXXFLAGS="$RPM_OPT_FLAGS -fpermissive -fno-strict-aliasing" \
 %configure2_5x \
-	--with-browser-plugins-dir=%_libdir/mozilla/plugins/ \
+	--with-browser-plugins-dir=%{_libdir}/mozilla/plugins/ \
 	--disable-static \
 %if !%{with xulrunner}
-	--disable-gtkmoz-browser-element --disable-smjs-script-runtime \
+	--disable-gtkmoz-browser-element \
+	--disable-smjs-script-runtime \
 %endif
 	--disable-werror \
-	--disable-update-mime-database --disable-update-desktop-database \
+	--disable-update-mime-database \
+	--disable-update-desktop-database \
 	--with-oem-brand="%{product_distribution} %{product_version} for %{product_arch}"
 
 %make
@@ -361,15 +350,15 @@ CXXFLAGS="$RPM_OPT_FLAGS -fpermissive -fno-strict-aliasing" \
 %makeinstall_std
 
 desktop-file-install --vendor='' \
-	--dir %buildroot%_datadir/applications \
+	--dir %{buildroot}%{_datadir}/applications \
 	--remove-category='Network' \
 	--remove-category='News' \
 	--add-category='Utility' \
 	--remove-mime-type='app/gg' \
-	%buildroot%_datadir/applications/*.desktop
+	%{buildroot}%{_datadir}/applications/*.desktop
 
 # Just because we load modules with libtool doesn't mean we have
 # to ship .la mess for libraries...
-rm -f %buildroot%_libdir/*.la
+rm -f %{buildroot}%{_libdir}/*.la
 
-%find_lang %name || touch %name.lang
+%find_lang %{name} || touch %{name}.lang
