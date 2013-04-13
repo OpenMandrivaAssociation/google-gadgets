@@ -275,7 +275,7 @@ fi
 #-----------------------------------------------------------------------
 
 %define majorwk 0
-%define libwebkitjs %mklibname ggadget-webkitjs %{majorwk}
+%define libwebkitjs %mklibname ggadget-webkitjs 1.0 %{majorwk}
 
 %package -n %libwebkitjs
 Summary:        Google Gadgets for Linux - shared webkit js libs
