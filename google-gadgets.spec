@@ -44,13 +44,13 @@ Universal Gadgets on iGoogle.
 #-----------------------------------------------------------------------
 
 %package common
-Summary: Google Gadgets for Linux - common modules
-Group: Toys
-Requires: curl
-Conflicts: %{name} < 0.10.3-2
-Conflicts: %{name}-tk < 0.10.3-2
-Obsoletes: %{name}-webkit
-Obsoletes: %{name}-xul
+Summary:	Google Gadgets for Linux - common modules
+Group:		Toys
+Requires:	curl
+Conflicts:	%{name} < 0.10.3-2
+Conflicts:	%{name}-tk < 0.10.3-2
+Obsoletes:	%{name}-webkit
+Obsoletes:	%{name}-xul
 
 %description common
 Google Gadgets for Linux provides a platform for running desktop gadgets
@@ -64,7 +64,7 @@ This package contains common modules of Google Gadgets.
 %doc NEWS THANKS README ChangeLog
 %{_datadir}/pixmaps/google-gadgets.png
 %{_datadir}/mime/packages/00-google-gadgets.xml
-%_iconsdir/*/*/*/*
+%{_iconsdir}/*/*/*/*
 %{_datadir}/google-gadgets
 %dir %{_libdir}/google-gadgets/modules
 %{_libdir}/google-gadgets/modules/analytics-usage-collector.*
@@ -87,80 +87,80 @@ This package contains common modules of Google Gadgets.
 #-----------------------------------------------------------------------
 
 %define majorggadget 0
-%define libggadget %mklibname ggadget 1.0 %majorggadget
+%define libggadget %mklibname ggadget 1.0 %{majorggadget}
 
-%package -n %libggadget
+%package -n %{libggadget}
 Summary:	Google Gadgets for Linux - shared libs
 Group:		Toys
 
-%description -n %libggadget
+%description -n %{libggadget}
 This package contains shared library of Google Gadgets.
 
-%files -n %libggadget
+%files -n %{libggadget}
 %{_libdir}/libggadget-1.0.so.%{majorggadget}*
 
 #-----------------------------------------------------------------------
 
 %define majorggadgetdbus 0
-%define libggadgetdbus %mklibname ggadget-dbus 1.0 %majorggadgetdbus
+%define libggadgetdbus %mklibname ggadget-dbus 1.0 %{majorggadgetdbus}
 
-%package -n %libggadgetdbus
+%package -n %{libggadgetdbus}
 Summary:	Google Gadgets for Linux - shared libs
 Conflicts:	%{_lib}ggadget1.0_0 < 0.11.0-6
 Group:		Toys
 
-%description -n %libggadgetdbus
+%description -n %{libggadgetdbus}
 This package contains shared library of Google Gadgets.
 
-%files -n %libggadgetdbus
+%files -n %{libggadgetdbus}
 %{_libdir}/libggadget-dbus-1.0.so.%{majorggadgetdbus}*
 
 #-----------------------------------------------------------------------
 
 %define majorggadgetjs 0
-%define libggadgetjs %mklibname ggadget-js 1.0 %majorggadgetjs
+%define libggadgetjs %mklibname ggadget-js 1.0 %{majorggadgetjs}
 
-%package -n %libggadgetjs
+%package -n %{libggadgetjs}
 Summary:	Google Gadgets for Linux - shared libs
 Conflicts:	%{_lib}ggadget1.0_0 < 0.11.0-6
 Group:		Toys
 
-%description -n %libggadgetjs
+%description -n %{libggadgetjs}
 This package contains shared library of Google Gadgets.
 
-%files -n %libggadgetjs
+%files -n %{libggadgetjs}
 %{_libdir}/libggadget-js-1.0.so.%{majorggadgetjs}*
 
 #-----------------------------------------------------------------------
 
 %define majorggadgetxdg 0
-%define libggadgetxdg %mklibname ggadget-xdg 1.0 %majorggadgetxdg
+%define libggadgetxdg %mklibname ggadget-xdg 1.0 %{majorggadgetxdg}
 
-%package -n %libggadgetxdg
+%package -n %{libggadgetxdg}
 Summary:	Google Gadgets for Linux - shared libs
 Conflicts:	%{_lib}ggadget1.0_0 < 0.11.0-6
 Group:		Toys
 
-%description -n %libggadgetxdg
+%description -n %{libggadgetxdg}
 This package contains shared library of Google Gadgets.
 
-%files -n %libggadgetxdg
+%files -n %{libggadgetxdg}
 %{_libdir}/libggadget-xdg-1.0.so.%{majorggadgetxdg}*
 
 #-----------------------------------------------------------------------
 
 %define majorggadgetnpapi 0
-%define libggadgetnpapi %mklibname ggadget-npapi 1.0 %majorggadgetnpapi
+%define libggadgetnpapi %mklibname ggadget-npapi 1.0 %{majorggadgetnpapi}
 
-%package -n %libggadgetnpapi
+%package -n %{libggadgetnpapi}
 Summary:	Google Gadgets for Linux - shared libs
 Conflicts:	%{_lib}ggadget1.0_0 < 0.11.0-6
 Group:		Toys
 
-%description -n %libggadgetnpapi
+%description -n %{libggadgetnpapi}
 This package contains shared library of Google Gadgets.
 
-%files -n %libggadgetnpapi
+%files -n %{libggadgetnpapi}
 %{_libdir}/libggadget-npapi-1.0.so.%{majorggadgetnpapi}*
 
 #-----------------------------------------------------------------------
@@ -168,14 +168,14 @@ This package contains shared library of Google Gadgets.
 %define majorqt 0
 %define libqt %mklibname ggadget-qt 1.0 %{majorqt}
 
-%package -n %libqt
+%package -n %{libqt}
 Summary:	Google Gadgets for Linux - qt4 libs
 Group:		Toys
 
-%description -n %libqt
+%description -n %{libqt}
 This package contains qt4 library of Google Gadgets.
 
-%files -n %libqt
+%files -n %{libqt}
 %{_libdir}/libggadget-qt-1.0.so.%{majorqt}*
 
 #-----------------------------------------------------------------------
@@ -187,7 +187,7 @@ Provides:	google-gadgets-host = %{version}
 Provides:	google-gadgets = %{version}-%{release}
 Obsoletes:	google-gadgets < %{version}-%{release}
 Requires:	google-gadgets-common = %{version}
-Requires:	%libqt >= %{version}-%{release}
+Requires:	%{libqt} >= %{version}-%{release}
 
 %description qt
 Google Gadgets for Linux provides a platform for running desktop gadgets
@@ -219,14 +219,14 @@ fi
 %define majorgtk 0
 %define libgtk %mklibname ggadget-gtk 1.0 %{majorgtk}
 
-%package -n %libgtk
+%package -n %{libgtk}
 Summary:	Google Gadgets for Linux - gtk2 libs
 Group:		Toys
 
-%description -n %libgtk
+%description -n %{libgtk}
 This package contains gtk2 library of Google Gadgets.
 
-%files -n %libgtk
+%files -n %{libgtk}
 %{_libdir}/libggadget-gtk-1.0.so.%{majorgtk}*
 
 #-----------------------------------------------------------------------
@@ -239,7 +239,7 @@ Provides:	google-gadgets = %{version}-%{release}
 Conflicts:      %{name} < 0.10.3-2
 Conflicts:	google-gadgets-common < 0.10.3-2
 Requires:	google-gadgets-common = %{version}-%{release}
-Requires:	%libgtk >= %{version}-%{release}
+Requires:	%{libgtk} >= %{version}-%{release}
 Obsoletes:	google-gadgets < %{version}-%{release}
 Obsoletes:	google-gadgets-xul
 
@@ -260,7 +260,7 @@ if ! [ -e %{_bindir}/ggl-gtk ]; then
 fi
 
 %files gtk
-%_bindir/ggl-gtk
+%{_bindir}/ggl-gtk
 %{_datadir}/applications/ggl-gtk.desktop
 %{_datadir}/applications/ggl-designer.desktop
 %{_libdir}/google-gadgets/modules/gtk-edit-element.*
@@ -277,38 +277,38 @@ fi
 %define majorwk 0
 %define libwebkitjs %mklibname ggadget-webkitjs 1.0 %{majorwk}
 
-%package -n %libwebkitjs
-Summary:        Google Gadgets for Linux - shared webkit js libs
-Group:          Toys
+%package -n %{libwebkitjs}
+Summary:	Google Gadgets for Linux - shared webkit js libs
+Group:		Toys
 
-%description -n %libwebkitjs
+%description -n %{libwebkitjs}
 This package contains shared webkit js library of Google Gadgets.
 
-%files -n %libwebkitjs
+%files -n %{libwebkitjs}
 %{_libdir}/libggadget-webkitjs-1.0.so.%{majorwk}*
 
 #-----------------------------------------------------------------------
 
 %define devname %mklibname %{name} -d
 
-%package -n %devname
+%package -n %{devname}
 Summary:	Google Gadgets for Linux - Development files
 Group:		Toys
 Provides:	%{name}-devel = %{version}
-Requires:	%libggadget = %{version}
-Requires:	%libggadgetdbus = %{version}
-Requires:	%libggadgetnpapi = %{version}
-Requires:	%libggadgetjs = %{version}
-Requires:	%libggadgetxdg = %{version}
-Requires:	%libgtk = %{version}
-Requires:	%libqt = %{version}
-Requires:	%libwebkitjs = %{version}
+Requires:	%{libggadget} = %{version}
+Requires:	%{libggadgetdbus} = %{version}
+Requires:	%{libggadgetnpapi} = %{version}
+Requires:	%{libggadgetjs} = %{version}
+Requires:	%{libggadgetxdg} = %{version}
+Requires:	%{libgtk} = %{version}
+Requires:	%{libqt} = %{version}
+Requires:	%{libwebkitjs} = %{version}
 
-%description -n %devname
+%description -n %{devname}
 This package contains developement files of Google Gadgets.
 
-%files -n %devname
-%_includedir/*
+%files -n %{devname}
+%{_includedir}/*
 %{_libdir}/google-gadgets/include
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*.pc
@@ -330,8 +330,8 @@ autoconf
 %build
 # As of 0.11.3-1292, -fpermissive and -fno-strict-aliasing are needed to
 # even start getting things to build.
-CFLAGS="$RPM_OPT_FLAGS -fpermissive -fno-strict-aliasing" \
-CXXFLAGS="$RPM_OPT_FLAGS -fpermissive -fno-strict-aliasing" \
+CFLAGS="%{optflags} -fpermissive -fno-strict-aliasing" \
+CXXFLAGS="%{optflags} -fpermissive -fno-strict-aliasing" \
 %configure2_5x \
 	--with-browser-plugins-dir=%{_libdir}/mozilla/plugins/ \
 	--disable-static \
