@@ -21,19 +21,19 @@ Patch2:		google-gadgets-for-linux-0.12-xulrunner-2.0.patch
 BuildRequires:	desktop-file-utils
 BuildRequires:	flex
 BuildRequires:	zip
-BuildRequires:	curl-devel
 BuildRequires:	libltdl-devel
-BuildRequires:	gtk2-devel
 BuildRequires:	qt4-devel
-BuildRequires:	dbus-devel
-BuildRequires:	startup-notification-devel
-%if %{with xulrunner}
-Buildrequires:	xulrunner-devel
-%endif
-BuildRequires:	webkitgtk-devel
+BuildRequires:	pkgconfig(dbus-1)
+BuildRequires:	pkgconfig(gtk+-2.0)
+BuildRequires:	pkgconfig(gstreamer-video-0.10)
+BuildRequires:	pkgconfig(libcurl)
+BuildRequires:	pkgconfig(librsvg-2.0)
 BuildRequires:	pkgconfig(libsoup-2.4)
-BuildRequires:	librsvg-devel
-BuildRequires:	libgstreamer0.10-plugins-base-devel
+BuildRequires:	pkgconfig(libstartup-notification-1.0)
+%if %{with xulrunner}
+Buildrequires:	pkgconfig(libxul)
+%endif
+BuildRequires:	pkgconfig(webkit-1.0)
 
 %description
 Google Gadgets for Linux provides a platform for running desktop gadgets
@@ -41,16 +41,10 @@ under Linux, catering to the unique needs of Linux users. It is compatible
 with the gadgets written for Google Desktop for Windows as well as the
 Universal Gadgets on iGoogle.
 
-#-----------------------------------------------------------------------
-
 %package common
 Summary:	Google Gadgets for Linux - common modules
 Group:		Toys
 Requires:	curl
-Conflicts:	%{name} < 0.10.3-2
-Conflicts:	%{name}-tk < 0.10.3-2
-Obsoletes:	%{name}-webkit
-Obsoletes:	%{name}-xul
 
 %description common
 Google Gadgets for Linux provides a platform for running desktop gadgets
@@ -106,7 +100,6 @@ This package contains shared library of Google Gadgets.
 
 %package -n %{libggadgetdbus}
 Summary:	Google Gadgets for Linux - shared libs
-Conflicts:	%{_lib}ggadget1.0_0 < 0.11.0-6
 Group:		Toys
 
 %description -n %{libggadgetdbus}
@@ -122,7 +115,6 @@ This package contains shared library of Google Gadgets.
 
 %package -n %{libggadgetjs}
 Summary:	Google Gadgets for Linux - shared libs
-Conflicts:	%{_lib}ggadget1.0_0 < 0.11.0-6
 Group:		Toys
 
 %description -n %{libggadgetjs}
@@ -138,7 +130,6 @@ This package contains shared library of Google Gadgets.
 
 %package -n %{libggadgetxdg}
 Summary:	Google Gadgets for Linux - shared libs
-Conflicts:	%{_lib}ggadget1.0_0 < 0.11.0-6
 Group:		Toys
 
 %description -n %{libggadgetxdg}
@@ -154,7 +145,6 @@ This package contains shared library of Google Gadgets.
 
 %package -n %{libggadgetnpapi}
 Summary:	Google Gadgets for Linux - shared libs
-Conflicts:	%{_lib}ggadget1.0_0 < 0.11.0-6
 Group:		Toys
 
 %description -n %{libggadgetnpapi}
@@ -185,7 +175,6 @@ Summary:	Google Gadgets for Linux - qt4 host
 Group:		Toys
 Provides:	google-gadgets-host = %{version}
 Provides:	google-gadgets = %{version}-%{release}
-Obsoletes:	google-gadgets < %{version}-%{release}
 Requires:	google-gadgets-common = %{version}
 Requires:	%{libqt} >= %{version}-%{release}
 
@@ -236,12 +225,8 @@ Summary:	Google Gadgets for Linux - gtk2 host
 Group:		Toys
 Provides:	google-gadgets-host = %{version}
 Provides:	google-gadgets = %{version}-%{release}
-Conflicts:      %{name} < 0.10.3-2
-Conflicts:	google-gadgets-common < 0.10.3-2
 Requires:	google-gadgets-common = %{version}-%{release}
 Requires:	%{libgtk} >= %{version}-%{release}
-Obsoletes:	google-gadgets < %{version}-%{release}
-Obsoletes:	google-gadgets-xul
 
 %description gtk
 Google Gadgets for Linux provides a platform for running desktop gadgets
@@ -357,8 +342,5 @@ desktop-file-install --vendor='' \
 	--remove-mime-type='app/gg' \
 	%{buildroot}%{_datadir}/applications/*.desktop
 
-# Just because we load modules with libtool doesn't mean we have
-# to ship .la mess for libraries...
-rm -f %{buildroot}%{_libdir}/*.la
-
 %find_lang %{name} || touch %{name}.lang
+
