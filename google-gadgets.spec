@@ -1,6 +1,3 @@
-# We actually use libtool to load modules
-%define dont_remove_libtool_files 1
-
 # Currently broken
 %bcond_with xulrunner
 
