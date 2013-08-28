@@ -31,6 +31,7 @@ BuildRequires:	pkgconfig(libstartup-notification-1.0)
 Buildrequires:	pkgconfig(libxul)
 %endif
 BuildRequires:	pkgconfig(webkit-1.0)
+BuildRequires:	pkgconfig(QtWebKit)
 
 %description
 Google Gadgets for Linux provides a platform for running desktop gadgets
