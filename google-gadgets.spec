@@ -4,7 +4,7 @@
 Summary:	Google Gadgets for Linux
 Name:		google-gadgets
 Version:	0.11.3
-Release:	0.1292.5
+Release:	0.1292.6
 License:	Apache License
 Group:		Toys
 # Actually svn rev. 1292 -- the latest released version doesn't build
