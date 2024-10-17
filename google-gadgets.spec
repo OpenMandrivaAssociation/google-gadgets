@@ -9,7 +9,7 @@ License:	Apache License
 Group:		Toys
 # Actually svn rev. 1292 -- the latest released version doesn't build
 # with modern compilers
-Url:		http://code.google.com/p/google-gadgets-for-linux/
+Url:		https://code.google.com/p/google-gadgets-for-linux/
 Source0:	http://google-gadgets-for-linux.googlecode.com/files/%{name}-for-linux-%{version}.tar.xz
 Patch0:		google-gadgets-for-linux-0.11.2-default-disable-xulrunner.patch
 Patch1:		ggadgets-compile.patch
